@@ -11,9 +11,5 @@ public class GatewayApplication extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
-	
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
-		return builder.sources(GatewayApplication.class);
-	}
+
 }
