@@ -26,17 +26,30 @@
 	-->
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
-			<a href="PaginaPrincipal.jsp"><img src="images/logo.png" width="100" alt=logo Wallapop"></a>
+			<a href="PaginaPrincipal.html"><img src="images/logo.png" width="100" alt=logo Wallapop"></a>
 		</div>
 		<div class="col-xs-9 col-sm-5">
 			<h1><b>WALLAPOPTIW</b></h1>
 		</div>
 		<nav class="col-xs-12 col-sm-4">
 			<ul id="menu" class="nav navbar-nav navbar-right">
-				<li><a href="#"><img src="images/usuario.png" width="30"></a></li>
-				<li><a href="#"><img src="images/productos.png" width="30"></a></li>
-				<li><a href="#"><img src="images/chats.png" width=30"></a></li>
-			</ul>
+					<li><button type="submit" name="accion" value="Editar"
+							class="btn btn-default">
+							<img src="images/usuario.png" width="30">
+						</button></li>
+					<li><button type="submit" name="accion" value="Productos"
+							class="btn btn-default">
+							<img src="images/productos.png" width="30" height="30">
+						</button></li>
+					<li><button type="submit" name="accion" value="Chat"
+							class="btn btn-default">
+							<img src="images/chats.png" width="30">
+						</button></li>
+					<li><button type="submit" name="accion" value="Chat"
+							class="btn btn-default">
+							<img src="images/cerrar.png" width="30">
+						</button></li>
+				</ul>
 		</nav>	
 	</header>
 	
@@ -62,15 +75,15 @@
 				
 				<div class="input-group input_espaciado">
 					<span class="input-group-addon" id="basic-addon1">Contrase�a actual</span>
-					<input type="text" class="form-control" name="ContrasenyaActual" id="ContrasenyaActual" placeholder="ContrasenyaActual" aria-describedly="basic-addon1">
+					<input type="password" class="form-control" name="ContrasenyaActual" id="ContrasenyaActual" placeholder="ContrasenyaActual" aria-describedly="basic-addon1">
 				</div>
 				<div class="input-group input_espaciado">
 					<span class="input-group-addon" id="basic-addon1">Nueva contrase�a</span>
-					<input type="text" class="form-control" name="NuevaContrasenya" id="NuevaContrasenya" placeholder="NuevaContrasenya" aria-describedly="basic-addon1">
+					<input type="password" class="form-control" name="NuevaContrasenya" id="NuevaContrasenya" placeholder="NuevaContrasenya" aria-describedly="basic-addon1">
 				</div>
 				<div class="input-group input_espaciado">
 					<span class="input-group-addon" id="basic-addon1">Verificar nueva contrase�a</span>
-					<input type="text" class="form-control" name="VerificarContrasenya" id="VerificarContrasenya" placeholder="VerificarContrasenya" aria-describedly="basic-addon1">
+					<input type="password" class="form-control" name="VerificarContrasenya" id="VerificarContrasenya" placeholder="VerificarContrasenya" aria-describedly="basic-addon1">
 				</div>
 				<button type="hidden" name="accion" value="Cambiar" class="btn btn-default">Guardar cambios</button>	
 				<a href="PaginaPrincipal.jsp" class="btn btn-default">Ir a inicio</a>
