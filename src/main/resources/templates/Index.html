@@ -1,23 +1,26 @@
-
+	
 <!DOCTYPE html>
-<html>
+
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"></meta>
 <title>WallapopTiw</title>
 <meta name="viewport"
-	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> </meta>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
+<link  rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="estilos.css">
+	crossorigin="anonymous" ></link>
+<link rel="stylesheet" href="src/main/resources/templates/estilos.css"></link>
 <!-- Optional theme -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
+	crossorigin="anonymous"></link>
+	
+	<link rel="stylesheet" href="src/main/resources/templates/css/*"></link>	
 
 </head>
 
@@ -26,8 +29,8 @@
 		<div class="col-xs-3 col-sm-3">
 			<form action="pag_principal" method="post">
 				<a href="#"><img src="images/logo.png"
-					width="100" alt=logoWallapop"></a> <input type="hidden"
-					name="Logo" value="Principal">
+					width="100" alt="logoWallapop"></img></a> <input type="hidden"
+					name="Logo" value="Principal"></input>
 
 			</form>
 		</div>
@@ -37,19 +40,7 @@
 			</h1>
 		</div>
 	</header>
-	<!--
-	<%  
-					HttpSession sesion = (HttpSession) request.getSession(false);
-					String mensaje = (String)sesion.getAttribute("mensajeRegistro");
-					if(mensaje!=null){
-				%>
-					<h3 style="background-color:red; width:95%; margin:10px 20px;" class="alert">${mensajeRegistro}</h3>
-				<%}
-					sesion.setAttribute("mensajeRegistro", null);
-				%>
-	-->
-	<!--  Formulario para enviar los datos al SesionServlet -->		
-	
+		
 	<div class="container">
 		<article class="registro">
 
@@ -59,29 +50,20 @@
 				</p>
 				<div class="input-inicio">
 					<input type="email" name="email" id="email" class="form-control"
-						placeholder="Email">
+						placeholder="Email"></input>
 				</div>
 				<br>
 				<div class="input-sesion">
 					<p>
 						<b> Contrasena </b>
-					<p>
+					</p>
 						<input type="password" name="password" id="password"
-							class="form-control" placeholder="Contrasena">
+							class="form-control" placeholder="Contrasena"></input>
 				</div>
-				<br>
+				</br>
 				<button type="submit" name="accion" value="IniciarSesion"
 					class="btn btn-default">Iniciar sesion</button>
-
 			
-
-			<!--  En caso de que el inico de sesión no sea correcto 
-			<form method="post" action="inicio">
-				<input name="accion" value="invalidar" type="hidden">
-				<button> Invalidar sesion </button>			
-			</form>-->
-
-			<!--  Formulario para Registrarse en la aplicación -->
 
 			<button type="button" class="btn btn-default" data-toggle="modal"
 				data-target="#ventanaRegistro" style="margin-left:15px;">Registrarse</button>
@@ -103,35 +85,35 @@
 								<div class="form-group">
 									<label for="InputEmail">Email</label> <input type="email"
 										name="InputEmail" class="form-control" id="InputEmail" 
-										placeholder="Email">
+										placeholder="Email"></input>
 								</div>
 								<div class="form-group">
 									<label for="Nombre">Nombre</label> <input type="text" name="Nombre" class="form-control" id="Nombre" 
-										placeholder="Nombre">
+										placeholder="Nombre"></input>
 								</div>
 								<div class="form-group">
 									<label for="Apellidos">Apellidos</label> <input
 										type="apellidos" class="form-control" id="Apellidos"
 										name="Apellidos"
-										placeholder="Apellidos">
+										placeholder="Apellidos"></input>
 								</div>
 								<div class="form-group">
 									<label for="Contrasenya">Contrasenya</label> <input
 										type="contrasenya" class="form-control" id="Contrasenya"
 										name="Contrasenya"
-										placeholder="Contrasenya">
+										placeholder="Contrasenya"></input>
 								</div>
 								<div class="form-group">
 									<label for="VerificacionContrasenya">Verificacion
 										Contrasenya</label> <input type="Verificacioncontrasenya"
 										class="form-control" id="VerificacionContrasenya"
 										name="VerificacionContrasenya"
-										placeholder="Contrasenya">
+										placeholder="Contrasenya"></input>
 								</div>
 								<div class="form-group">
 									<label for="Ciudad">Ciudad</label> <input type="ciudad"
 										name="Ciudad" 
-										class="form-control" id="Ciudad" placeholder="Ciudad">
+										class="form-control" id="Ciudad" placeholder="Ciudad"></input>
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -159,3 +141,4 @@
 
 </body>
 </html>
+	
