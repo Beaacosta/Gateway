@@ -8,16 +8,24 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"></meta>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous"></link>
-<link rel="stylesheet" href="estilos.css"></link>
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous"></link>
+   
+	<script th:href="@{/js/jquery.js}" src="/js/jquery.js"></script>
+	<script th:href="@{/js/bootstrap.js}" src="/js/jbootstrap.js"></script>
+	<script th:href="@{/js/bootstrap.min.js}" src="/js/bootstrap.min.js"></script>
+	<script th:href="@{/js/npm.js}" src="/js/npm.js"></script>
+	
+	<link rel="stylesheet" href="/css/estilos.css" />
+	
+	<link rel="stylesheet" href="/css/bootstrap-theme.css" />
+	<link rel="stylesheet" href="/css/bootstrap-theme.css.map" />
+	<link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="/css/bootstrap-theme.min.css.map" />
+	<link rel="stylesheet" href="/css/bootstrap.css" />	
+	<link rel="stylesheet" href="/css/bootstrap.css.map" />	
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />	
+	<link rel="stylesheet" href="/css/bootstrap.min.css.map" />	
+	<link rel="stylesheet" href="/css/bootstrap-theme.css" />		
+
 
 </head>
 <body>
@@ -35,7 +43,7 @@
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
 			<form action="pag_principal" method="post">
-				<a href="PaginaPrincipal.html"><img src="images/logo.png"
+				<a href="PaginaPrincipal.html"><img src="/images/logo.png"
 					width="100" alt=logoWallapop"></a> <input type="hidden"
 					name="Logo" value="Principal"></input>
 
@@ -49,10 +57,10 @@
 		<nav class="col-xs-12 col-sm-4">
 			<form action="pag_principal_admin" method="post">
 				<ul id="menu" class="nav navbar-nav navbar-right">
-					<li><a href="PaginaPrincipal_admin.html"><img src="images/usuario.png" width="30"></a></li>
-					<li><a href="Producto_admin.html"><img src="images/productos.png" width="30" height="30"></a></li>
-					<li><a href="Chat.html"><img src="images/chats.png" width="30"></a></li>
-					<li><a href="Index.html"><img src="images/cerrar.png" width="30"></a></li>
+					<li><a href="PaginaPrincipal_admin.html"><img src="/images/usuario.png" width="30"></a></li>
+					<li><a href="Producto_admin.html"><img src="/images/productos.png" width="30" height="30"></a></li>
+					<li><a href="Chat.html"><img src="/images/chats.png" width="30"></a></li>
+					<li><a href="Index.html"><img src="/images/cerrar.png" width="30"></a></li>
 				
 				</ul>
 			</form>
@@ -172,12 +180,6 @@
 		</div>
 	</footer>
 
-	<script src="js/jquery.js"></script>
-	<!-- Latest compiled and minified JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
-
+	
 </body>
 </html>
