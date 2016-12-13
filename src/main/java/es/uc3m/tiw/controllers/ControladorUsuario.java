@@ -26,64 +26,44 @@ public class ControladorUsuario {
 	@RequestMapping(value="wallapoptiw/")
 	public String devolverIndex(Model modelo){
 		modelo.addAttribute("usuario", new Usuario());
-		modelo.addAttribute("loged", false);
+		modelo.addAttribute("logged", false);
 
 		return "Index"; 
 	}
 
 	@RequestMapping(value="wallapoptiw/Index")
 	public String redirigirIndex(Model modelo){
-		
+
 		return "redirect:wallapoptiw/"; 
 	}
 
 	/*para hacer el login*/
 	@RequestMapping (value="wallapoptiw/", method = RequestMethod.POST)
-	public String iniciarSesion(Model model, @RequestParam("mail") String mail, @RequestParam("password") String password ){
+	public String iniciarSesion(Model model, @RequestParam("email") String mail, @RequestParam("password") String password ){
 
 		Usuario usuario = new Usuario();
-		usuario.setMail(mail);
+		usuario.setMail(mail);	
 		usuario.setPassword(password);
-		
-		usuario = restTemplate.postForObject("http://localhost:8010/buscar_mail", mail, Usuario.class);
+		Usuario u = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
+
+
 		//login satisfactorio
-		if(true){
-
+		if(!u.equals(null)){
+			if(u.getPassword().equals(password)){
+				if(u.getMail().equals("admin@admin.com")){
+					return "redirect:wallapoptiw/PaginaPrincipal_admin";	
+				
+				}
+				else{
+					return "redirect:wallapoptiw/PaginaPrincipal";						
+				}
+			}
+			else{
+				return "Index";
+				
+			}
 			/*podria ser cliente o administrador*/
-			return "redirect:wallapoptiw/PaginaPrincipal";
-
 		}else{
-
-			return "Index";
-		}
-		
-
-	}
-
-	
-	/*para hacer el registro*/
-	
-	@RequestMapping (value="wallapoptiw/", method = RequestMethod.POST)
-	public String registrarUsuario(Model model, @RequestParam("mail") String mail, @RequestParam("password") String password,
-			@RequestParam("nombre") String nombre, @RequestParam("apellidos") String apellidos,
-			@RequestParam("ciudad") String ciudad, @RequestParam("passVerif") String passVerif){
-
-		Usuario usuario = new Usuario();
-		usuario.setApellidos(apellidos);
-		usuario.setCiudad(ciudad);	
-		usuario.setMail(mail);
-		usuario.setNombre(nombre);
-		usuario.setPassword(password);
-		
-		usuario = restTemplate.postForObject("http://localhost:8010/anyadir_usuario", usuario, Usuario.class);
-		//login satisfactorio
-		if(true){
-
-			/*podria ser cliente o administrador*/
-			return "redirect:wallapoptiw/PaginaPrincipal";
-
-		}else{
-
 			return "Index";
 		}
 		
