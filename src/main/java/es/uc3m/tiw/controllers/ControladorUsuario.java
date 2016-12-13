@@ -24,35 +24,40 @@ public class ControladorUsuario {
 	public String devolverIndex(Model modelo){
 		modelo.addAttribute("usuario", new Usuario());
 		modelo.addAttribute("logged", false);
-
 		return "Index"; 
 	}
 
 	@RequestMapping(value="wallapoptiw/Index")
 	public String redirigirIndex(Model modelo){
-		modelo.addAttribute("usuario", new Usuario());
-		modelo.addAttribute("logged", false);
 
 		return "redirect:wallapoptiw/"; 
 	}
 
 	/*para hacer el login*/
 	@RequestMapping (value="wallapoptiw/", method = RequestMethod.POST)
-	public String iniciarSesion(Model model, @RequestParam("mail") String mail, @RequestParam("password") String password ){
+	public String iniciarSesion(Model model, @RequestParam("email") String mail, @RequestParam("password") String password ){
 
 		Usuario usuario = new Usuario();
-		usuario.setMail(mail);
+		usuario.setMail(mail);	
 		usuario.setPassword(password);
-		
-		usuario = restTemplate.postForObject("http://localhost:8010//*NombreDelMetodoEnClienteQueValida*/", usuario, Usuario.class);
+		Usuario u = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
 		//login satisfactorio
-		if(true){
-
+		if(!u.equals(null)){
+			if(u.getPassword().equals(password)){
+				if(u.getMail().equals("admin@admin.com")){
+					return "redirect:wallapoptiw/PaginaPrincipal_admin";	
+				
+				}
+				else{
+					return "redirect:wallapoptiw/PaginaPrincipal";						
+				}
+			}
+			else{
+				return "Index";
+				
+			}
 			/*podria ser cliente o administrador*/
-			return "redirect:wallapoptiw/PaginaPrincipal";
-
 		}else{
-
 			return "Index";
 		}
 		
