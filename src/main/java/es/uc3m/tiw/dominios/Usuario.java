@@ -14,7 +14,7 @@ public class Usuario {
 	private String ciudad;
 	private String mail;
 	private String nombre;	
-
+	
 	private String password;
 	/*
 	@OneToMany(cascade=CascadeType.ALL)
