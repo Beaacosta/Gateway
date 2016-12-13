@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
 import es.uc3m.tiw.dominios.Usuario;
 
+
+@SessionAttributes(value={"loged","usuarioValido"})
 @Controller
 public class ControladorUsuario {
 
@@ -24,6 +27,7 @@ public class ControladorUsuario {
 	public String devolverIndex(Model modelo){
 		modelo.addAttribute("usuario", new Usuario());
 		modelo.addAttribute("logged", false);
+
 		return "Index"; 
 	}
 
@@ -41,6 +45,8 @@ public class ControladorUsuario {
 		usuario.setMail(mail);	
 		usuario.setPassword(password);
 		Usuario u = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
+
+
 		//login satisfactorio
 		if(!u.equals(null)){
 			if(u.getPassword().equals(password)){
@@ -64,6 +70,8 @@ public class ControladorUsuario {
 
 	}
 
+	
+	
 	@RequestMapping(value="wallapoptiw/MiPerfilContrasenya")
 	public String devolverMiPerfilContrasenya(Model modelo, @ModelAttribute Usuario usuario){
 		return "MiPerfil-contrasenya"; 
