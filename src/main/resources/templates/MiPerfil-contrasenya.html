@@ -4,7 +4,7 @@
     <head>
 	<meta charset="UTF-8"></meta>
         <title>WallapopTiw</title>
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"></meta>
       
 	<script th:href="@{/js/jquery.js}" src="/js/jquery.js"></script>
 	<script th:href="@{/js/bootstrap.js}" src="/js/jbootstrap.js"></script>
@@ -39,68 +39,76 @@
 	-->
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
-			<a href="PaginaPrincipal.html"><img src="/images/logo.png" width="100" alt=logo Wallapop"></a>
+			<a href="PaginaPrincipal.html"><img src="/images/logo.png" width="100" alt="logo Wallapop"></img></a>
 		</div>
 		<div class="col-xs-9 col-sm-5">
 			<h1><b>WALLAPOPTIW</b></h1>
 		</div>
 		<nav class="col-xs-12 col-sm-4">
 			<ul id="menu" class="nav navbar-nav navbar-right">
+					<form th:action="@{/wallapoptiw/MiPerfilEditar}"  method="post">
 					<li><button type="submit" name="accion" value="Editar"
 							class="btn btn-default">
-							<img src="/images/usuario.png" width="30">
+							<img src="/images/usuario.png" width="30"></img>
 						</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/MisProductos}"  method="post">
 					<li><button type="submit" name="accion" value="Productos"
 							class="btn btn-default">
-							<img src="/images/productos.png" width="30" height="30">
+							<img src="/images/productos.png" width="30" height="30"></img>
 						</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/Chat}"  method="post">
 					<li><button type="submit" name="accion" value="Chat"
 							class="btn btn-default">
-							<img src="/images/chats.png" width="30">
+							<img src="/images/chats.png" width="30"></img>
 						</button></li>
-					<li><button type="submit" name="accion" value="Chat"
+					</form>
+					<form th:action="@{/wallapoptiw/CerrarSesion}"  method="post">
+					<li><button type="submit" name="accion" value="cerrar"
 							class="btn btn-default">
-							<img src="/images/cerrar.png" width="30">
-
+							<img src="/images/cerrar.png" width="30"></img>
 						</button></li>
+					</form>
 				</ul>
 		</nav>	
 	</header>
 	
 	<div class="container-fluid">
 		<div class="row">
-			<hr>
+			<hr></hr>
 			<div class="col-md-3">
 				<h4>Nombre de usuario</h4>
-				<br>
+				<br></br>
 				<ul class="nav nav-pills nav-stacked">
-					<li role="presentation"><a href="MiPerfil-editar.jsp">Editar perfil</a></li>
-					<li role="presentation"class="active"><a href="MiPerfil-contrasenya">Cambiar contrase�a</a></li>
-					<li role="presentation"><a href="#">Notificaciones</a></li>
-					<li role="presentation"><a href="#">Accesibilidad</a></li>
-					<li role="presentation"><a href="#">Seguridad y privacidad</a></li>
+					<form th:action="@{/wallapoptiw/MiPerfilEditar}"  method="post">
+						
+						<li role="presentation" class="active"><button type="hidden" class="btn btn-default" name="accion" value="Guardar">Editar perfil</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/MiPerfilContrasenya}"  method="post">
+						<li role="presentation"><button type="hidden" class="btn btn-default" name="accion" value="Guardar">Cambiar contraseña</button></li>
+					</form>
 				</ul>
 			</div>
 			<div class="col-xs-9">
 				<h3>Contrase�a</h3>
-				<h4>Cambia tu contrase�a actual</h4>
-				<hr>
-				<form action="editar_usuario" method="post">
+				<h4>Cambia tu contraseña actual</h4>
+				<hr></hr>
+				<form th:action="@{/wallapoptiw/MiPerfilContrasenya2}"  method="post">
 				
 				<div class="input-group input_espaciado">
-					<span class="input-group-addon" id="basic-addon1">Contrase�a actual</span>
+					<span class="input-group-addon" id="basic-addon1">Contraseña actual</span>
 					<input type="password" class="form-control" name="ContrasenyaActual" id="ContrasenyaActual" placeholder="ContrasenyaActual" aria-describedly="basic-addon1"></input>
 				</div>
 				<div class="input-group input_espaciado">
-					<span class="input-group-addon" id="basic-addon1">Nueva contrase�a</span>
+					<span class="input-group-addon" id="basic-addon1">Nueva contraseña</span>
 					<input type="password" class="form-control" name="NuevaContrasenya" id="NuevaContrasenya" placeholder="NuevaContrasenya" aria-describedly="basic-addon1"></input>
 				</div>
 				<div class="input-group input_espaciado">
-					<span class="input-group-addon" id="basic-addon1">Verificar nueva contrase�a</span>
+					<span class="input-group-addon" id="basic-addon1">Verificar nueva contraseña</span>
 					<input type="password" class="form-control" name="VerificarContrasenya" id="VerificarContrasenya" placeholder="VerificarContrasenya" aria-describedly="basic-addon1"></input>
 				</div>
 				<button type="hidden" name="accion" value="Cambiar" class="btn btn-default">Guardar cambios</button>	
-				<a href="PaginaPrincipal.jsp" class="btn btn-default">Ir a inicio</a>
 				</form>	
 			</div>
 		</div>
