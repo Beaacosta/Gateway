@@ -38,9 +38,15 @@ public class ControladorUsuario {
 	public String iniciarSesion(Model model, @RequestParam("email") String mail, @RequestParam("password") String password ){
 
 		Usuario usuario = new Usuario();
+		usuario.setApellidos("aaa");
+		usuario.setCiudad("bbb");
+		usuario.setNombre("bea");
 		usuario.setMail(mail);	
 		usuario.setPassword(password);
 		Usuario u = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
+		model.addAttribute("usuario", u);
+		String nombre = u.getNombre();
+		
 		//login satisfactorio
 		if(!u.equals(null)){
 			if(u.getPassword().equals(password)){
@@ -49,7 +55,7 @@ public class ControladorUsuario {
 				
 				}
 				else{
-					return "redirect:wallapoptiw/PaginaPrincipal";						
+					return "PaginaPrincipal";						
 				}
 			}
 			else{
@@ -64,17 +70,44 @@ public class ControladorUsuario {
 
 	}
 
+	/*para hacer el registro*/
+	@RequestMapping (value="wallapoptiw/registrar", method = RequestMethod.POST)
+	public String registrar(Model model, @RequestParam("InputEmail") String mail,@RequestParam("Nombre") String nombre, @RequestParam("Apellidos") String apellidos, @RequestParam("Contrasenya") String password,  @RequestParam("VerificacionContrasenya") String passwordVerif,  @RequestParam("Ciudad") String ciudad ){
+
+		if(!password.equals(passwordVerif)){
+			//Lanzar feedback no son iguales las contraseñas
+			return "Index";
+		}
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setApellidos(apellidos);
+		usuario.setCiudad(ciudad);
+		usuario.setNombre(nombre);
+		usuario.setMail(mail);	
+		usuario.setPassword(password);
+		Usuario u = restTemplate.postForObject("http://localhost:8010/anyadir_usuario", usuario, Usuario.class);
+		model.addAttribute("usuario", u);
+		//registro satisfactorio
+		return "PaginaPrincipal";
+	}
+	
 	@RequestMapping(value="wallapoptiw/MiPerfilContrasenya")
 	public String devolverMiPerfilContrasenya(Model modelo, @ModelAttribute Usuario usuario){
 		return "MiPerfil-contrasenya"; 
 	}
 
 	@RequestMapping(value="wallapoptiw/MiPerfilEditar")
-	public String devolverMiPerfilEditar(Model modelo, @ModelAttribute Usuario usuario){
+	public String devolverMiPerfilEditar(Model modelo, @ModelAttribute("usuario") Usuario usuario){
+		String nombre=usuario.getNombre();
+		System.out.println(nombre);
 		return "MiPerfil-editar"; 
 	}
 
-
+	@RequestMapping(value="wallapoptiw/CerrarSesion")
+	public String cerrarSesion(Model modelo, @ModelAttribute Usuario usuario){
+		return "Index"; 
+	}
 	
 
 }

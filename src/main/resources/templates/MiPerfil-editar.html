@@ -40,7 +40,7 @@
 	-->
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
-			<a href="PaginaPrincipal.html"><img src="/images/logo.png" width="100" alt=logo Wallapop"></a>
+			<a href="PaginaPrincipal.html"><img src="/images/logo.png" width="100" alt="logo Wallapop"></img></a>
 		</div>
 		<div class="col-xs-9 col-sm-5">
 			<h1><b>WALLAPOPTIW</b></h1>
@@ -49,22 +49,30 @@
 			<ul id="menu" class="nav navbar-nav navbar-right">
 				<form action="editar_usuario" method="post">
 				<ul id="menu" class="nav navbar-nav navbar-right">
+					<form th:action="@{/wallapoptiw/MiPerfilEditar}"  method="post">
 					<li><button type="submit" name="accion" value="Editar"
 							class="btn btn-default">
-							<img src="/images/usuario.png" width="30">
+							<img src="/images/usuario.png" width="30"></img>
 						</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/MisProductos}"  method="post">
 					<li><button type="submit" name="accion" value="Productos"
 							class="btn btn-default">
-							<img src="/images/productos.png" width="30" height="30">
+							<img src="/images/productos.png" width="30" height="30"></img>
 						</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/Chat}"  method="post">
 					<li><button type="submit" name="accion" value="Chat"
 							class="btn btn-default">
-							<img src="/images/chats.png" width="30">
+							<img src="/images/chats.png" width="30"></img>
 						</button></li>
-					<li><button type="submit" name="accion" value="Chat"
+					</form>
+					<form th:action="@{/wallapoptiw/CerrarSesion}"  method="post">
+					<li><button type="submit" name="accion" value="cerrar"
 							class="btn btn-default">
-							<img src="/images/cerrar.png" width="30">
+							<img src="/images/cerrar.png" width="30"></img>
 						</button></li>
+					</form>
 				</ul>
 			</form>
 			</ul>
@@ -73,22 +81,19 @@
 	
 	<div class="container-fluid">
 		<div class="row">
-			<hr>
+			<hr></hr>
 			<div class="col-xs-3">
 				<h4>${usuario_sesion.nombre} ${usuario_sesion.apellidos}</h4>
-				<br>
+				<br></br>
 				<ul class="nav nav-pills nav-stacked">
 					<li role="presentation" class="active"><a href="MiPerfil-editar.jsp">Editar perfil</a></li>
 					<li role="presentation"><a href="MiPerfil-contrasenya.jsp">Cambiar contrase�a</a></li>
-					<li role="presentation"><a href="#">Notificaciones</a></li>
-					<li role="presentation"><a href="#">Accesibilidad</a></li>
-					<li role="presentation"><a href="#">Seguridad y privacidad</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-9">
 				<h3>Perfil</h3>
 				<h4>Cambia tus datos personales</h4>
-				<hr>
+				<hr></hr>
 				<form action="editar_usuario" method="post">
 					<div class="input-group input_espaciado">
 						<span class="input-group-addon" id="basic-addon1">Nombre</span>
@@ -96,19 +101,18 @@
 					</div>
 					<div class="input-group input_espaciado">
 						<span class="input-group-addon" id="basic-addon1">Apellidos</span>
-						<input type="text" class="form-control" value="${usuario_sesion.apellidos}"name="Apellidos" id="Apellidos" placeholder="Apellidos" aria-describedly="basic-addon1"></input>
+						<input type="text" class="form-control" value="${usuario_sesion.apellidos}" name="Apellidos" id="Apellidos" placeholder="Apellidos" aria-describedly="basic-addon1"></input>
 					</div>
 					<div class="input-group input_espaciado">
 						<span class="input-group-addon" id="basic-addon1">Email</span>
-						<input type="text" class="form-control" value="${usuario_sesion.mail}"name="Email" id="Email" placeholder="Email" aria-describedly="basic-addon1"></input>
+						<input type="text" class="form-control" value="${usuario_sesion.mail}" name="Email" id="Email" placeholder="Email" aria-describedly="basic-addon1"></input>
 					</div>
 					<div class="input-group input_espaciado">
 						<span class="input-group-addon" id="basic-addon1">Ciudad</span>
-						<input type="text" class="form-control" value="${usuario_sesion.ciudad}"name="Ciudad" id="Ciudad" placeholder="Ciudad" aria-describedly="basic-addon1"></input>
+						<input type="text" class="form-control" value="${usuario_sesion.ciudad}" name="Ciudad" id="Ciudad" placeholder="Ciudad" aria-describedly="basic-addon1"></input>
 					</div>
 					<button type="hidden" class="" name="accion" value="Baja">Dar de baja de la aplicaci�n</button>
-					<br>
-					</br>
+					<br></br>
 					<button type="hidden" class="btn btn-default" name="accion" value="Guardar">Guardar cambios</button>	
 				</form>
 				<a href="PaginaPrincipal.jsp" class="btn btn-default">Ir a inicio</a>

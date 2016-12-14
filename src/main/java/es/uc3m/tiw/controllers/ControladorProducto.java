@@ -1,24 +1,29 @@
 package es.uc3m.tiw.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
+
+import es.uc3m.tiw.dominios.Usuario;
 
 @Controller
 public class ControladorProducto {
 
+	@Autowired
+	RestTemplate restTemplate;
 	
-	@RequestMapping(value="wallapoptiw/{PaginaPrincipal}")
-	public String devolverPaginaPrincipal(Model modelo, @PathVariable String PaginaPrincipal){
-		modelo.addAttribute("nombre_var", PaginaPrincipal); 
+	@RequestMapping(value="wallapoptiw/PPrincipal")
+	public String devolverPaginaPrincipal(Model modelo){
 		return "PaginaPrincipal"; 
 	}
 	
-	
-	@RequestMapping(value="wallapoptiw/{MisProductos}")
-	public String devolverMisProductos(Model modelo, @PathVariable String MisProductos){
-		modelo.addAttribute("nombre_var", MisProductos); 
+
+	@RequestMapping(value="wallapoptiw/MisProductos")
+	public String devolverMisProductos(Model modelo, @ModelAttribute Usuario usuario){
 		return "MisProductos"; 
 	}
 	
