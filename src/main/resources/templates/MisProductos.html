@@ -41,7 +41,7 @@
 	-->
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
-			<a href="PaginaPrincipal.html"><img src="/images/logo.png" width="100" alt=logo Wallapop"></a>
+			<a href="PaginaPrincipal.html"><img src="/images/logo.png" width="100" alt="logo Wallapop"></img></a>
 		</div>
 		<div class="col-xs-9 col-sm-5">
 			<h1><b>WALLAPOPTIW</b></h1>
@@ -49,22 +49,30 @@
 		<nav class="col-xs-12 col-sm-4">
 			<form action="productos" method="post">
 				<ul id="menu" class="nav navbar-nav navbar-right">
+					<form th:action="@{/wallapoptiw/MiPerfilEditar}"  method="post">
 					<li><button type="submit" name="accion" value="Editar"
 							class="btn btn-default">
-							<img src="/images/usuario.png" width="30">
+							<img src="/images/usuario.png" width="30"></img>
 						</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/MisProductos}"  method="post">
 					<li><button type="submit" name="accion" value="Productos"
 							class="btn btn-default">
-							<img src="/images/productos.png" width="30" height="30">
+							<img src="/images/productos.png" width="30" height="30"></img>
 						</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/Chat}"  method="post">
 					<li><button type="submit" name="accion" value="Chat"
 							class="btn btn-default">
-							<img src="/images/chats.png" width="30">
+							<img src="/images/chats.png" width="30"></img>
 						</button></li>
-					<li><button type="submit" name="accion" value="Chat"
+					</form>
+					<form th:action="@{/wallapoptiw/CerrarSesion}"  method="post">
+					<li><button type="submit" name="accion" value="cerrar"
 							class="btn btn-default">
-							<img src="/images/cerrar.png" width="30">
+							<img src="/images/cerrar.png" width="30"></img>
 						</button></li>
+					</form>
 				</ul>
 			</form>
 		</nav>	
@@ -86,7 +94,7 @@
 									<div class="modal-body">
 										<div class="form-group">
 											<label for="NombreProducto">Nombre del producto</label>
-											<input type="NombreProducto" class="form-control" id="NombreProducto" name="NombreProducto" placeholder="NombreProducto">
+											<input type="NombreProducto" class="form-control" id="NombreProducto" name="NombreProducto" placeholder="NombreProducto"></input>
 										</div>
 										<div class="form-group">
 												<label for="Categoria">Categoría</label>
@@ -160,7 +168,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-3 col-md-1">
-								<img src="/images/carrito.png" width="100" alt="imagenprod1">
+								<img src="/images/carrito.png" width="100" alt="imagenprod1"></img>
 							</div>
 							<div class="col-xs-9 col-md-3 datos">
 								<a href="Producto.jsp?id=${prod_sesion.id}"><h3>${prod_sesion.titulo}</h3></a>	
@@ -170,9 +178,7 @@
 						<div class="row col-xs-12 col-md-4">
 							<h2 class="precio">${prod_sesion.precio}</h2>
 							<div class="centrarbotones">
-							<button type="button" class="btn btn-default"
-										data-toggle="modal"   onClick="window.location.href='productos?accion=eliminar&id=${prod_sesion.id}'"
-									 data-target="#ventanaEliminarProd" >Eliminar</button>								
+							<button type="button" class="btn btn-default" data-toggle="modal"  data-target="#ventanaEliminarProd" >Eliminar</button>								
 								
 								<!--  
 								<div class="modal fade" id="ventanaEliminarProd">
@@ -199,7 +205,7 @@
 										<div class="modal-body">
 											<div class="form-group">
 												<label for="NombreProducto">Nombre del producto</label>
-												<input type="NombreProducto" class="form-control" value="${prod_sesion.titulo}" name="NombreProducto" id="NombreProducto" placeholder="NombreProducto">
+												<input type="NombreProducto" class="form-control" value="${prod_sesion.titulo}" name="NombreProducto" id="NombreProducto" placeholder="NombreProducto"></input>
 											</div>
 											<div class="form-group">
 												<label for="Categoria">Categoría</label>
@@ -234,7 +240,7 @@
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cerrar</button>
-											<button type="hidden" name="accion" value="modificar" class="btn btn-default" onClick="window.location.href='productos?accion=editar&id=${prod_sesion.id}'">Guardar cambios</button>	
+											<button type="hidden" name="accion" value="modificar" class="btn btn-default">Guardar cambios</button>	
 										</div>
 									</div>
 								</div>	

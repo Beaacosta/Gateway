@@ -69,15 +69,14 @@
 				<button type="submit" name="accion" value="IniciarSesion"
 					class="btn btn-default">Iniciar sesion</button>
 			
-
+			</form>
 			<button type="button" class="btn btn-default" data-toggle="modal"
 				data-target="#ventanaRegistro" style="margin-left:15px;">Registrarse</button>
 			<div class="modal fade" id="ventanaRegistro">
 				<div class="modal-dialog">
 					<div class="modal-content">
 
-
-						<form action="inicio" method="post">
+						<form th:action="@{/wallapoptiw/registrar}"  method="post">
 
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal"
@@ -85,8 +84,6 @@
 								<h4 class="modal-title">Registro de usuarios</h4>
 							</div>
 							<div class="modal-body">
-
-
 								<div class="form-group">
 									<label for="InputEmail">Email</label> <input type="email"
 										name="InputEmail" class="form-control" id="InputEmail" 
@@ -104,13 +101,13 @@
 								</div>
 								<div class="form-group">
 									<label for="Contrasenya">Contrasenya</label> <input
-										type="contrasenya" class="form-control" id="Contrasenya"
+										type="password" class="form-control" id="Contrasenya"
 										name="Contrasenya"
 										placeholder="Contrasenya"></input>
 								</div>
 								<div class="form-group">
 									<label for="VerificacionContrasenya">Verificacion
-										Contrasenya</label> <input type="Verificacioncontrasenya"
+										Contrasenya</label> <input type="password"
 										class="form-control" id="VerificacionContrasenya"
 										name="VerificacionContrasenya"
 										placeholder="Contrasenya"></input>
@@ -133,7 +130,6 @@
 					</div>
 				</div>
 			</div>
-			</form>
 		</article>
 	</div>
 
