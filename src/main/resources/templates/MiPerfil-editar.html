@@ -86,15 +86,19 @@
 				<h4>${usuario_sesion.nombre} ${usuario_sesion.apellidos}</h4>
 				<br></br>
 				<ul class="nav nav-pills nav-stacked">
-					<li role="presentation" class="active"><a href="MiPerfil-editar.jsp">Editar perfil</a></li>
-					<li role="presentation"><a href="MiPerfil-contrasenya.jsp">Cambiar contrase�a</a></li>
+					<form th:action="@{/wallapoptiw/MiPerfilEditar}"  method="post">
+						
+						<li role="presentation" class="active"><button type="hidden" class="btn btn-default" name="accion" value="Guardar">Editar perfil</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/MiPerfilContrasenya}"  method="post">
+						<li role="presentation"><button type="hidden" class="btn btn-default" name="accion" value="Guardar">Cambiar contraseña</button></li>
+					</form>
 				</ul>
 			</div>
 			<div class="col-xs-9">
 				<h3>Perfil</h3>
 				<h4>Cambia tus datos personales</h4>
 				<hr></hr>
-				<form action="editar_usuario" method="post">
 					<div class="input-group input_espaciado">
 						<span class="input-group-addon" id="basic-addon1">Nombre</span>
 						<input type="text" class="form-control" value="${usuario_sesion.nombre}" name="Nombre" id="Nombre" placeholder="Nombre" aria-describedly="basic-addon1"></input>
@@ -111,11 +115,13 @@
 						<span class="input-group-addon" id="basic-addon1">Ciudad</span>
 						<input type="text" class="form-control" value="${usuario_sesion.ciudad}" name="Ciudad" id="Ciudad" placeholder="Ciudad" aria-describedly="basic-addon1"></input>
 					</div>
-					<button type="hidden" class="" name="accion" value="Baja">Dar de baja de la aplicaci�n</button>
+				<form th:action="@{/wallapoptiw/EliminarUsuario}"  method="post">
+					<button type="hidden" class="btn btn-default" name="accion" value="Baja">Dar de baja de la aplicación</button>
+				</form>
 					<br></br>
+				<form th:action="@{/wallapoptiw/MiPerfilEditar2}"  method="post">
 					<button type="hidden" class="btn btn-default" name="accion" value="Guardar">Guardar cambios</button>	
 				</form>
-				<a href="PaginaPrincipal.jsp" class="btn btn-default">Ir a inicio</a>
 				
 			</div>
 		</div>
