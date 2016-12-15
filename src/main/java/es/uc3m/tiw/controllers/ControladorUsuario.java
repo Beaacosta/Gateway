@@ -130,6 +130,7 @@ public class ControladorUsuario {
 	
 	@RequestMapping(value="wallapoptiw/MiPerfilEditar", method = RequestMethod.POST)
 	public String devolverMiPerfilEditar(Model model, @ModelAttribute Usuario usuario){
+		model.addAttribute("usuario", usuario);
 		return "MiPerfil-editar"; 
 	}
 	
