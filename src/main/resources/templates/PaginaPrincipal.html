@@ -33,17 +33,7 @@
     <div class="alert alert-info" th:if="${error !=''}" >
   		<h4 th:text="${error}"></h4>
 	</div>
-<!--  
-<%  
-					HttpSession sesion = (HttpSession) request.getSession(false);
-					String mensaje = (String)sesion.getAttribute("mensajeRegistro");
-					if(mensaje!=null){
-				%>
-					<h3 style="background-color:red; width:95%; margin:10px 20px;" class="alert">${mensajeRegistro}</h3>
-				<%} 
-					sesion.setAttribute("mensajeRegistro", null);
-				%>
-	-->
+
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
 			<form action="pag_principal" method="post">
@@ -117,7 +107,8 @@
 				if (coleccionProducto.isEmpty()) {
 			%>
 			-->
-			<div class="col-xs-12 col-md-4 cajaproducto">
+
+			<div class="col-xs-12 col-md-4 cajaproducto" th:if="${lista_productos.isEmpty()}" >
 				<p>No existen productos a la venta</p>
 			</div>
 			<!--  
@@ -128,28 +119,26 @@
 						sesion.setAttribute("prod_sesion", p);
 			%>
 			-->
-			<form action="productos" method="post">
-				<div class="col-xs-12 col-md-4 cajaproducto">
+			
+			<form action="productos" method="post" th:if="${!lista_productos.isEmpty()}">
+				<div class="col-xs-12 col-md-4 cajaproducto" th:each="lista_productos: ${lista_productos}">
 					<div class="container">
 						<div class="row">
-							<form action="pag_principal" name="item1" method="post">
-								<a href="#" onclick="PaginaPrincipal.item1.submit();">
 									<div class="col-xs-3 col-md-1">
 										<img src="/images/carrito.png" width="100" alt="imagenprod1">
 										</img>
 									</div>
 									<div class="col-xs-9 col-md-3 datos">
-										<a href="Producto.jsp?id=${prod_sesion.id}" th:value="*{titulo}" ></a>
+										<h3 th:text="${#conversions.convert(lista_productos.titulo, 'String')}" ></h3>
 									</div>
-						</a>
+						</div>
+						<div class="row col-xs-12 col-md-4 precio">
+							<h4 th:text="${#conversions.convert(lista_productos.precio, 'String')}"></h4>
+							<button class="btn btn-default" type="button">Más información</button>
+						</div>
+					</div>
+				</div>
 			</form>
-			<div class="row col-xs-12 col-md-4 precio" th:value="*{precio}">
-				
-			</div>
-		</div>
-		</div>
-	</div>
-	</form>
 	<!--  
 	<%
 		}

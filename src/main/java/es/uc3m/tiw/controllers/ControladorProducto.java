@@ -1,5 +1,7 @@
 package es.uc3m.tiw.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,14 +16,20 @@ import es.uc3m.tiw.dominios.Producto;
 import es.uc3m.tiw.dominios.Usuario;
 
 
-@SessionAttributes({"producto", "error"})
+@SessionAttributes({"producto", "lista_productos","error", "usuario"})
 @Controller
 public class ControladorProducto {
 
 	@Autowired
 	RestTemplate restTemplate;
 	
-		
+	@RequestMapping(value="wallapoptiw/PPrincipal")
+	public String redirigirPPrincipal(Model model, @ModelAttribute Usuario usuario){
+		List<Producto> p = restTemplate.postForObject("http://localhost:8020/listar_productos", null, List.class);
+		model.addAttribute("lista_productos", p);
+		return "PaginaPrincipal"; 
+	}
+	
 	@RequestMapping(value="wallapoptiw/MisProductos")
 	public String redirigirMisProductos(Model model, @ModelAttribute Usuario usuario){
 		model.addAttribute("usuario", usuario);
@@ -32,7 +40,6 @@ public class ControladorProducto {
 	/*Añadir producto*/
 	@RequestMapping (value="wallapoptiw/anyadir_producto", method = RequestMethod.POST)
 	public String anyadirProducto(Model model, Usuario usuario, @RequestParam("NombreProducto") String nombre,@RequestParam("Categoria") String categoria, @RequestParam("Descripcion") String descripcion,  @RequestParam("Precio") double precio,  @RequestParam("Estado") String estado ){
-
 		
 			Producto producto = new Producto();
 			producto.setTitulo(nombre);
@@ -40,7 +47,7 @@ public class ControladorProducto {
 			producto.setDescripcion(descripcion);
 			producto.setPrecio(precio);	
 			producto.setEstado(estado);
-			producto.setUsuario(usuario);
+			producto.setUsuario_id(usuario.getId());
 			Producto p = restTemplate.postForObject("http://localhost:8020/anyadir_producto", producto, Producto.class);
 			model.addAttribute("producto", p);
 			//Se ha añadido el producto
@@ -71,7 +78,7 @@ public class ControladorProducto {
 		producto.setDescripcion(descripcion);
 		producto.setPrecio(precio);	
 		producto.setEstado(estado);
-		producto.setUsuario(usuario);
+		producto.setUsuario_id(usuario.getId());
 		restTemplate.postForObject("http://localhost:8020/modificar_producto", producto, Producto.class);
 		model.addAttribute("producto",producto);
 		model.addAttribute("usuario",usuario);
