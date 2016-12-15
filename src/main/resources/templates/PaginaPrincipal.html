@@ -135,13 +135,12 @@
 										</img>
 									</div>
 									<div class="col-xs-9 col-md-3 datos">
-										<a href="Producto.jsp?id=${prod_sesion.id}"><h3>
-												${prod_sesion.titulo}</h3></a>
+										<a href="Producto.jsp?id=${prod_sesion.id}" th:value="*{titulo}" ></a>
 									</div>
 						</a>
 			</form>
-			<div class="row col-xs-12 col-md-4 precio">
-				<h2>${prod_sesion.precio}</h2>
+			<div class="row col-xs-12 col-md-4 precio" th:value="*{precio}">
+				
 			</div>
 		</div>
 		</div>
