@@ -10,7 +10,7 @@ public class ControladorAdmin {
 
 	
 	
-	@RequestMapping(value="wallapoptiw/{PaginaPrincipalAdmin}")
+	@RequestMapping(value="wallapoptiw/PaginaPrincipalAdmin")
 	public String devolverPaginaPrincipalAdmin(Model modelo, @PathVariable String PaginaPrincipalAdmin){
 		modelo.addAttribute("nombre_var", PaginaPrincipalAdmin); 
 		return "PaginaPrincipal_admin"; 
@@ -18,7 +18,7 @@ public class ControladorAdmin {
 	
 	
 	
-	@RequestMapping(value="wallapoptiw/{ProductoAdmin}")
+	@RequestMapping(value="wallapoptiw/ProductoAdmin")
 	public String devolverProductoAdmin(Model modelo, @PathVariable String ProductoAdmin){
 		modelo.addAttribute("nombre_var", ProductoAdmin); 
 		return "Producto_admin"; 

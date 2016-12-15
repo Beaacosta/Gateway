@@ -120,8 +120,7 @@
 			%>
 			-->
 			
-			<form action="productos" method="post" th:if="${!lista_productos.isEmpty()}">
-				<div class="col-xs-12 col-md-4 cajaproducto" th:each="lista_productos: ${lista_productos}">
+				<div class="col-xs-12 col-md-4 cajaproducto" th:if="${!lista_productos.isEmpty()}" th:each="prod: ${lista_productos}">
 					<div class="container">
 						<div class="row">
 									<div class="col-xs-3 col-md-1">
@@ -129,16 +128,17 @@
 										</img>
 									</div>
 									<div class="col-xs-9 col-md-3 datos">
-										<h3 th:text="${#conversions.convert(lista_productos.titulo, 'String')}" ></h3>
+										<h3 th:text="${prod.titulo}" ></h3>
 									</div>
 						</div>
 						<div class="row col-xs-12 col-md-4 precio">
-							<h4 th:text="${#conversions.convert(lista_productos.precio, 'String')}"></h4>
-							<button class="btn btn-default" type="button">Más información</button>
+							<h4 th:text="${prod.precio}"></h4>
+							<form th:action="@{/wallapoptiw/Producto(id=${prod.id})}"  method="get">
+								<button type="hidden" class="btn btn-default" name="accion" value="Inf">Más información</button>
+							</form>
 						</div>
 					</div>
 				</div>
-			</form>
 	<!--  
 	<%
 		}
