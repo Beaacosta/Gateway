@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,13 @@ public class ControladorProducto {
 		List<Producto> p = restTemplate.postForObject("http://localhost:8020/listar_productos", null, List.class);
 		model.addAttribute("lista_productos", p);
 		return "PaginaPrincipal"; 
+	}
+	
+	@RequestMapping(value="wallapoptiw/Producto/{id}" , method = RequestMethod.GET)
+	public String redirigirProducto(Model model, @ModelAttribute Usuario usuario, @PathVariable("id") int prod_id){
+		Producto p = restTemplate.postForObject("http://localhost:8020/buscar_id", prod_id, Producto.class);
+		model.addAttribute("producto", p);
+		return "Producto"; 
 	}
 	
 	@RequestMapping(value="wallapoptiw/MisProductos")

@@ -58,7 +58,7 @@
 	-->
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
-			<a href="PaginaPrincipal.html"><img src="/images/logo.png" width="100" alt=logo Wallapop"></a>
+			<a href="PaginaPrincipal.html"><img src="/images/logo.png" width="100" alt="logo Wallapop"></img></a>
 
 		</div>
 		<div class="col-xs-9 col-sm-5">
@@ -66,23 +66,30 @@
 		</div>
 		<nav class="col-xs-12 col-sm-4">
 			<ul id="menu" class="nav navbar-nav navbar-right">
+					<form th:action="@{/wallapoptiw/MiPerfilEditar}"  method="post">
 					<li><button type="submit" name="accion" value="Editar"
 							class="btn btn-default">
-							<img src="/images/usuario.png" width="30">
+							<img src="/images/usuario.png" width="30"></img>
 						</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/MisProductos}"  method="post">
 					<li><button type="submit" name="accion" value="Productos"
 							class="btn btn-default">
-							<img src="/images/productos.png" width="30">
+							<img src="/images/productos.png" width="30" height="30"></img>
 						</button></li>
+					</form>
+					<form th:action="@{/wallapoptiw/Chat}"  method="post">
 					<li><button type="submit" name="accion" value="Chat"
 							class="btn btn-default">
-							<img src="/images/chats.png" width="30">
+							<img src="/images/chats.png" width="30"></img>
 						</button></li>
-					<li><button type="submit" name="accion" value="Chat"
+					</form>
+					<form th:action="@{/wallapoptiw/CerrarSesion}"  method="post">
+					<li><button type="submit" name="accion" value="cerrar"
 							class="btn btn-default">
-							<img src="/images/cerrar.png" width="30">
-
+							<img src="/images/cerrar.png" width="30"></img>
 						</button></li>
+					</form>
 				</ul>
 		</nav>	
 	</header>
@@ -99,29 +106,29 @@
 
 	%>
 	-->
-	<div class="container-fluid">
+	<div class="container-fluid" th:object="${producto}">
 		<div class="row col-xs-12 producto container-fluid">
 			<div class="row" id="cajaproducto_linea1">
 				<div class="col-xs-4">
-					<span>${producto.categoria}</span>
+					<span>"*{categoria}"</span>
 				</div>
 				<div class="col-xs-4">
-					<span>${producto.id}</span>
+					<span>"*{producto.id}"</span>
 				</div>
 				<div class="col-xs-4">
-					<span>${producto.estado}</span>
+					<span>"*{producto.estado}"</span>
 				</div>
 			<hr></hr>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-3">
-					<img src="/images/carrito.png" width="150" alt="imagenprod">
+					<img src="/images/carrito.png" width="150" alt="imagenprod"></img>
 
 				</div>
 				<div class="col-xs-12 col-sm-9">
-					<h2>${producto.titulo}</h2>
-					<p>${producto.descripcion}</p>
-					<h4 class="precio">${producto.precio}</h4>
+					<h2>"*{producto.titulo}"</h2>
+					<p>"*{producto.descripcion}"</p>
+					<h4 class="precio">"*{producto.precio}"</h4>
 				</div>
 			</div>
 			<div class="row">
