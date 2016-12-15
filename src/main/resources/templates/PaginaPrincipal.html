@@ -29,6 +29,10 @@
 
 </head>
 <body>
+
+	<div class="alert alert-info">
+  		<h4 th:if="${error !=''}" th:text="${error}"></h4>
+	</div>
 <!--  
 <%  
 					HttpSession sesion = (HttpSession) request.getSession(false);
