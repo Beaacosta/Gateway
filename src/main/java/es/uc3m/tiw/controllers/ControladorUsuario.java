@@ -36,7 +36,6 @@ public class ControladorUsuario {
 	/*para hacer el login*/
 	@RequestMapping (value="wallapoptiw/", method = RequestMethod.POST)
 	public String iniciarSesion(Model model, @RequestParam("email") String mail, @RequestParam("password") String password ){
-
 		Usuario usuario = new Usuario();
 		usuario.setApellidos("aaa");
 		usuario.setCiudad("bbb");
@@ -105,6 +104,7 @@ public class ControladorUsuario {
 	
 	@RequestMapping(value="wallapoptiw/MiPerfilContrasenya", method = RequestMethod.POST)
 	public String devolverMiPerfilContrasenya(Model model, @ModelAttribute Usuario usuario){
+		model.addAttribute("error", "");
 		return "MiPerfil-contrasenya"; 
 	}
 
@@ -130,7 +130,7 @@ public class ControladorUsuario {
 	
 	@RequestMapping(value="wallapoptiw/MiPerfilEditar", method = RequestMethod.POST)
 	public String devolverMiPerfilEditar(Model model, @ModelAttribute Usuario usuario){
-		model.addAttribute("usuario", usuario);
+		model.addAttribute("error", "");
 		return "MiPerfil-editar"; 
 	}
 	
