@@ -12,27 +12,17 @@ import javax.persistence.Table;
 import javax.persistence.OneToOne;
 import static javax.persistence.CascadeType.ALL;
 
-@Entity
-@Table(name="PRODUCTO")
-public class Producto implements Serializable {
-	@Id
-	@GeneratedValue(strategy = AUTO)
+public class Producto{
+	
 	private int id;
-	@Column(nullable = false, length = 15)
 	private String titulo;
-	@Column(length = 30)
 	private String categoria;
-	@Column(nullable = false)
 	private String descripcion;
-	@Column(nullable = false)
 	private double precio;
-    @Column(nullable = false)
     private String estado; 
-    @Column
     private String picture;
-    
-	@ManyToOne
-	private Usuario usuario;
+
+	private int usuario_id;
 	
 	public Producto() {
 		// TODO Auto-generated constructor stub
@@ -89,11 +79,12 @@ public class Producto implements Serializable {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	public Usuario getUsuario() {
-		return usuario;
+	public int getUsuario_id() {
+		return usuario_id;
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUsuario_id(int usuario_id) {
+		this.usuario_id = usuario_id;
 	}
+
 	
 }

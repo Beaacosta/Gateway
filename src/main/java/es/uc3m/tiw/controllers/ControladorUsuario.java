@@ -28,7 +28,7 @@ public class ControladorUsuario {
 
 	@RequestMapping(value="wallapoptiw/Index")
 	public String redirigirIndex(Model modelo){
-		return "redirect:wallapoptiw/"; 
+		return "redirect:/wallapoptiw/"; 
 	}
 
 	/*para hacer el login*/
@@ -56,7 +56,7 @@ public class ControladorUsuario {
 					else{
 						model.addAttribute("usuario",u);
 						model.addAttribute("error", "Has iniciado sesión correctamente");
-						return "PaginaPrincipal";						
+						return "redirect:/wallapoptiw/PPrincipal";						
 					}
 				}
 				else{
@@ -96,7 +96,7 @@ public class ControladorUsuario {
 			model.addAttribute("usuario", u);
 			//registro satisfactorio
 			model.addAttribute("error", "El registro se ha realizado correctamente.");
-			return "PaginaPrincipal";
+			return "redirect:/wallapoptiw/PPrincipal";
 		}
 	}
 	
