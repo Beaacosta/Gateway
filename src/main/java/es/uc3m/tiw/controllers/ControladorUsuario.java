@@ -103,6 +103,7 @@ public class ControladorUsuario {
 			if(actual.equals(usuario.getPassword())){
 				usuario.setPassword(nueva);
 				restTemplate.postForObject("http://localhost:8010/modificar_usuario", usuario, Usuario.class);
+				model.addAttribute("usuario", usuario);
 				return "MiPerfil-contrasenya";
 			}
 		}
@@ -111,7 +112,7 @@ public class ControladorUsuario {
 	}
 	
 	
-	@RequestMapping(value="wallapoptiw/MiPerfilEditar")
+	@RequestMapping(value="wallapoptiw/MiPerfilEditar", method = RequestMethod.POST)
 	public String devolverMiPerfilEditar(Model model, @ModelAttribute Usuario usuario){
 		return "MiPerfil-editar"; 
 	}
@@ -119,7 +120,6 @@ public class ControladorUsuario {
 	@RequestMapping(value="wallapoptiw/MiPerfilEditar2", method = RequestMethod.POST)
 	public String PerfilEditar(Model model, @ModelAttribute Usuario usuario, @RequestParam("Email") String mail, @RequestParam("Nombre") String nombre, @RequestParam("Apellidos") String apellidos, @RequestParam("Ciudad") String ciudad){
 	
-		Usuario u = new Usuario();
 		usuario.setApellidos(apellidos);
 		usuario.setNombre(nombre);
 		usuario.setMail(mail);
