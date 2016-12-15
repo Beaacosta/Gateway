@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import es.uc3m.tiw.dominios.Usuario;
 
-@SessionAttributes("usuario")
+@SessionAttributes({"usuario", "error"})
 @Controller
 public class ControladorUsuario {
 
@@ -25,13 +25,11 @@ public class ControladorUsuario {
 	@RequestMapping(value="wallapoptiw/")
 	public String devolverIndex(Model modelo){
 		modelo.addAttribute("usuario", new Usuario());
-		modelo.addAttribute("logged", false);
 		return "Index"; 
 	}
 
 	@RequestMapping(value="wallapoptiw/Index")
 	public String redirigirIndex(Model modelo){
-
 		return "redirect:wallapoptiw/"; 
 	}
 
@@ -43,32 +41,38 @@ public class ControladorUsuario {
 		usuario.setApellidos("aaa");
 		usuario.setCiudad("bbb");
 		usuario.setNombre("bea");
-		usuario.setMail(mail);	
-		usuario.setPassword(password);
-		Usuario u = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
-
-		//login satisfactorio
-		if(!u.equals(null)){
-			if(u.getPassword().equals(password)){
-				if(u.getMail().equals("admin@admin.com")){
-					model.addAttribute("usuario",u);
-					return "redirect:wallapoptiw/PaginaPrincipal_admin";	
-				}
-				else{
-					model.addAttribute("usuario",u);
-					return "PaginaPrincipal";						
-				}
-			}
-			else{
-				return "Index";
-				
-			}
-			/*podria ser cliente o administrador*/
-		}else{
+		if(mail.equals("")||(password.equals(""))){
+			model.addAttribute("error", "Existen campos vacíos. Rellene todos los campos, por favor.");
 			return "Index";
 		}
-		
-
+		else{
+			usuario.setMail(mail);	
+			usuario.setPassword(password);
+			Usuario u = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
+			//login satisfactorio
+			if(u.getId()!=usuario.getId()){
+				if(u.getPassword().equals(password)){
+					if(u.getMail().equals("admin@admin.com")){
+						model.addAttribute("usuario",u);
+						return "redirect:wallapoptiw/PaginaPrincipal_admin";	
+					}
+					else{
+						model.addAttribute("usuario",u);
+						model.addAttribute("error", "Has iniciado sesión correctamente");
+						return "PaginaPrincipal";						
+					}
+				}
+				else{
+					model.addAttribute("error", "Los datos introducidos no existen o no son correctos");
+					return "Index";
+					
+				}
+				/*podria ser cliente o administrador*/
+			}else{
+				model.addAttribute("error", "Los datos introducidos no existen o no son correctos");
+				return "Index";
+			}
+		}
 	}
 
 	/*para hacer el registro*/
@@ -77,19 +81,26 @@ public class ControladorUsuario {
 
 		if(!password.equals(passwordVerif)){
 			//Lanzar feedback no son iguales las contraseñas
+			model.addAttribute("error", "Los contraeña introducida no coincide con la verificación de la misma");
 			return "Index";
 		}
-		
-		Usuario usuario = new Usuario();
-		usuario.setApellidos(apellidos);
-		usuario.setCiudad(ciudad);
-		usuario.setNombre(nombre);
-		usuario.setMail(mail);	
-		usuario.setPassword(password);
-		Usuario u = restTemplate.postForObject("http://localhost:8010/anyadir_usuario", usuario, Usuario.class);
-		model.addAttribute("usuario", u);
-		//registro satisfactorio
-		return "PaginaPrincipal";
+		if(mail.equals("")||nombre.equals("")||apellidos.equals("")||password.equals("")||ciudad.equals("")){
+			model.addAttribute("error", "Existen campos vacíos. Rellene todos los campos, por favor.");
+			return "Index";
+		}
+		else{
+			Usuario usuario = new Usuario();
+			usuario.setApellidos(apellidos);
+			usuario.setCiudad(ciudad);
+			usuario.setNombre(nombre);
+			usuario.setMail(mail);	
+			usuario.setPassword(password);
+			Usuario u = restTemplate.postForObject("http://localhost:8010/anyadir_usuario", usuario, Usuario.class);
+			model.addAttribute("usuario", u);
+			//registro satisfactorio
+			model.addAttribute("error", "El registro se ha realizado correctamente.");
+			return "PaginaPrincipal";
+		}
 	}
 	
 	@RequestMapping(value="wallapoptiw/MiPerfilContrasenya", method = RequestMethod.POST)
@@ -104,10 +115,15 @@ public class ControladorUsuario {
 				usuario.setPassword(nueva);
 				restTemplate.postForObject("http://localhost:8010/modificar_usuario", usuario, Usuario.class);
 				model.addAttribute("usuario", usuario);
+				model.addAttribute("error", "Contraseña modificada con éxito.");
 				return "MiPerfil-contrasenya";
 			}
+			else{
+				model.addAttribute("error", "Las contraseñas actual introducida no es correcta.");
+				return "MiPerfil-contrasenya";				
+			}
 		}
-		//No has metido bien las contraseñas, intentelo de nuevo
+		model.addAttribute("error", "La contraseña nueva y la verificación de la misma no coinciden.");
 		return "MiPerfil-contrasenya"; 
 	}
 	
@@ -119,24 +135,35 @@ public class ControladorUsuario {
 	
 	@RequestMapping(value="wallapoptiw/MiPerfilEditar2", method = RequestMethod.POST)
 	public String PerfilEditar(Model model, @ModelAttribute Usuario usuario, @RequestParam("Email") String mail, @RequestParam("Nombre") String nombre, @RequestParam("Apellidos") String apellidos, @RequestParam("Ciudad") String ciudad){
-	
-		usuario.setApellidos(apellidos);
-		usuario.setNombre(nombre);
-		usuario.setMail(mail);
-		usuario.setCiudad(ciudad);
-		restTemplate.postForObject("http://localhost:8010/modificar_usuario", usuario, Usuario.class);
-		model.addAttribute("usuario",usuario);
-		return "MiPerfil-editar"; 
+		
+		if(mail.equals("")||nombre.equals("")||apellidos.equals("")||ciudad.equals("")){
+			model.addAttribute("usuario",usuario);			
+			model.addAttribute("error", "Existen campos vacíos. Rellene todos, por favor.");
+			return "MiPerfil-editar"; 		}
+		else{
+			usuario.setApellidos(apellidos);
+			usuario.setNombre(nombre);
+			usuario.setMail(mail);
+			usuario.setCiudad(ciudad);
+			restTemplate.postForObject("http://localhost:8010/modificar_usuario", usuario, Usuario.class);
+			model.addAttribute("usuario",usuario);
+			model.addAttribute("error", "Los datos se han modificado correctamente.");
+			return "MiPerfil-editar"; 			
+		}
 	}
 	
 	@RequestMapping(value="wallapoptiw/EliminarUsuario", method = RequestMethod.POST)
 	public String EliminarUsuario(Model model, @ModelAttribute Usuario usuario){
 		restTemplate.postForObject("http://localhost:8010/eliminar_usuario", usuario, Usuario.class);
+		model.addAttribute("usuario",null);
+		model.addAttribute("error", null);
 		return "Index"; 
 	}
 
 	@RequestMapping(value="wallapoptiw/CerrarSesion")
 	public String cerrarSesion(Model model, @ModelAttribute Usuario usuario){
+		model.addAttribute("usuario",null);
+		model.addAttribute("error", null);
 		return "Index"; 
 	}
 	
