@@ -97,11 +97,19 @@ public class ControladorUsuario {
 			usuario.setNombre(nombre);
 			usuario.setMail(mail);	
 			usuario.setPassword(password);
-			Usuario u = restTemplate.postForObject("http://localhost:8010/anyadir_usuario", usuario, Usuario.class);
-			model.addAttribute("usuario", u);
-			//registro satisfactorio
-			model.addAttribute("error", "El registro se ha realizado correctamente.");
-			return "redirect:/wallapoptiw/PPrincipal";
+			Usuario copi = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
+			if(!copi.equals(null)){
+				model.addAttribute("error", "El email introducido ya existe, pruebe con otro.");
+				return "Index";
+			}
+			else{
+				Usuario u = restTemplate.postForObject("http://localhost:8010/anyadir_usuario", usuario, Usuario.class);
+				model.addAttribute("usuario", u);
+				//registro satisfactorio
+				model.addAttribute("error", "El registro se ha realizado correctamente.");
+				return "redirect:/wallapoptiw/PPrincipal";
+			}
+			
 		}
 	}
 	
