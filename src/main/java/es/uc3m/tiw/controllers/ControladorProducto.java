@@ -76,14 +76,14 @@ public class ControladorProducto {
 	}
 	
 	@RequestMapping(value="wallapoptiw/MiProductoEditar2", method = RequestMethod.POST)
-	public String ProductoEditar(Model model, @ModelAttribute Usuario usuario,@ModelAttribute Producto prod, @RequestParam("NombreProducto") String nombre,@RequestParam("Categoria") String categoria, @RequestParam("Descripcion") String descripcion,  @RequestParam("Precio") double precio,  @RequestParam("Estado") String estado ){
+	public String ProductoEditar(Model model, @ModelAttribute Usuario usuario, @RequestParam("IdProducto") int id, @RequestParam("NombreProducto") String nombre,@RequestParam("Categoria") String categoria, @RequestParam("Descripcion") String descripcion,  @RequestParam("Precio") double precio,  @RequestParam("Estado") String estado ){
 
 		if(nombre.equals("")||categoria.equals("")||descripcion.equals("")||estado.equals("")){
-			model.addAttribute("producto",prod);			
 			model.addAttribute("error", "Existen campos vacíos. Rellene todos, por favor.");
 			return "MisProductos"; 		}
 		else{
 		Producto producto = new Producto();
+		producto.setIdProducto(id);
 		producto.setTitulo(nombre);
 		producto.setCategoria(categoria);
 		producto.setDescripcion(descripcion);
@@ -91,10 +91,8 @@ public class ControladorProducto {
 		producto.setEstado(estado);
 		producto.setUsuario(usuario.getId());
 		restTemplate.postForObject("http://localhost:8020/modificar_producto", producto, Producto.class);
-		model.addAttribute("producto",producto);
-		model.addAttribute("usuario",usuario);
 		model.addAttribute("error", "Los datos se han modificado correctamente.");
-		return "MisProductos"; 			
+		return "redirect:/wallapoptiw/MisProductos"; 			
 		}
 	}
 	
@@ -106,12 +104,5 @@ public class ControladorProducto {
 		return "redirect:/wallapoptiw/MisProductos";
 	}
 	
-	@RequestMapping(value="wallapoptiw/buscar", method = RequestMethod.POST)
-	public String devolverBusqueda(Model model, @ModelAttribute Usuario usuario, @RequestParam("busqueda") String busqueda){
-		model.addAttribute("error", "");
-		List<Producto> p = null;
-		p = restTemplate.postForObject("http://localhost:8020/productos_titulo", busqueda, List.class);
-		return "redirect:/wallapoptiw/PPrincipal"; 
-	}
 	
 }
