@@ -1,4 +1,4 @@
-	
+
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
@@ -7,39 +7,50 @@
 <meta charset="UTF-8"></meta>
 <title>WallapopTiw</title>
 <meta name="viewport"
-	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> </meta>
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</meta>
 
-     
-	<script th:href="@{/js/jquery.js}" src="/js/jquery.js"></script>
-	<script th:href="@{/js/bootstrap.js}" src="/js/jbootstrap.js"></script>
-	<script th:href="@{/js/bootstrap.min.js}" src="/js/bootstrap.min.js"></script>
-	<script th:href="@{/js/npm.js}" src="/js/npm.js"></script>
-	
-	<link rel="stylesheet" href="/css/estilos.css" />
-	
-	<link rel="stylesheet" href="/css/bootstrap-theme.css" />
-	<link rel="stylesheet" href="/css/bootstrap-theme.css.map" />
-	<link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
-	<link rel="stylesheet" href="/css/bootstrap-theme.min.css.map" />
-	<link rel="stylesheet" href="/css/bootstrap.css" />	
-	<link rel="stylesheet" href="/css/bootstrap.css.map" />	
-	<link rel="stylesheet" href="/css/bootstrap.min.css" />	
-	<link rel="stylesheet" href="/css/bootstrap.min.css.map" />	
-	<link rel="stylesheet" href="/css/bootstrap-theme.css" />		
+
+<script th:href="@{/js/jquery.js}" src="/js/jquery.js"></script>
+<script th:href="@{/js/bootstrap.js}" src="/js/jbootstrap.js"></script>
+<script th:href="@{/js/bootstrap.min.js}" src="/js/bootstrap.min.js"></script>
+<script th:href="@{/js/npm.js}" src="/js/npm.js"></script>
+
+<script th:href="@{/js/inicioSesionValidation.js}"
+	src="/js/inicioSesionValidation.js"></script>
+<script th:href="@{/js/registroValidation.js}"
+	src="/js/registroValidation.js"></script>
+<script th:href="@{/js/jquery-1.11.3.js}" src="/js/jquery-1.11.3.js"></script>
+
+
+<link rel="stylesheet" href="/css/estilos.css" />
+<link rel="stylesheet" href="/css/errorStyle.css" />
+
+
+
+<link rel="stylesheet" href="/css/bootstrap-theme.css" />
+<link rel="stylesheet" href="/css/bootstrap-theme.css.map" />
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css.map" />
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<link rel="stylesheet" href="/css/bootstrap.css.map" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css.map" />
+<link rel="stylesheet" href="/css/bootstrap-theme.css" />
 
 </head>
 
 <body>
 
-    <div class="alert alert-info" th:if="${error !=''}" >
-  		<h4 th:text="${error}"></h4>
+	<div class="alert alert-info" th:if="${error !=''}">
+		<h4 th:text="${error}"></h4>
 	</div>
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
 			<form action="pag_principal" method="post">
-				<a href="#"><img src="/images/logo.png"
-					width="100" alt="logoWallapop"></img></a> <input type="hidden"
-					name="Logo" value="Principal"></input>
+				<a href="#"><img src="/images/logo.png" width="100"
+					alt="logoWallapop"></img></a> <input type="hidden" name="Logo"
+					value="Principal"></input>
 
 			</form>
 		</div>
@@ -49,38 +60,48 @@
 			</h1>
 		</div>
 	</header>
-		
+
 	<div class="container">
 		<article class="registro">
 
-			<form th:action="@{/wallapoptiw/}"  method="post">
+			<form th:action="@{/wallapoptiw/}" method="post"
+				id="formInicioSesion">
 				<p>
 					<b> Email </b>
 				</p>
 				<div class="input-inicio">
 					<input type="email" name="email" id="email" class="form-control"
 						placeholder="Email"></input>
+					<div id="msgErrorLoginMail" class="errores">Email Incorrecto</div>
+
 				</div>
 				<br>
 				<div class="input-sesion">
 					<p>
 						<b> Contrasena </b>
 					</p>
-						<input type="password" name="password" id="password"
-							class="form-control" placeholder="Contrasena"></input>
+					<input type="password" name="password" id="password"
+						class="form-control" placeholder="Contrasena"></input>
+						
+						<div id="msgErrorLoginPass1" class="errores">Contraseña
+						incorrecta</div>
+					<div id="msgErrorLoginPass2" class="errores">Introduzca la
+						contraseña</div>
 				</div>
 				</br>
 				<button type="submit" name="accion" value="IniciarSesion"
-					class="btn btn-default">Iniciar sesion</button>
-			
+					class="btn btn-default" id="btnIniciarSesion">Iniciar sesion</button>
+					
+					
+
 			</form>
 			<button type="button" class="btn btn-default" data-toggle="modal"
-				data-target="#ventanaRegistro" style="margin-left:15px;">Registrarse</button>
+				data-target="#ventanaRegistro" style="margin-left: 15px;">Registrarse</button>
 			<div class="modal fade" id="ventanaRegistro">
 				<div class="modal-dialog">
 					<div class="modal-content">
 
-						<form th:action="@{/wallapoptiw/registrar}"  method="post">
+						<form th:action="@{/wallapoptiw/registrar}" method="post" id="formRegistro">
 
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal"
@@ -90,43 +111,58 @@
 							<div class="modal-body">
 								<div class="form-group">
 									<label for="InputEmail">Email</label> <input type="email"
-										name="InputEmail" class="form-control" id="InputEmail" 
+										name="InputEmail" class="form-control" id="InputEmail"
 										placeholder="Email"></input>
+									<div id="msgErrorRegistroMail" class="errores">Email
+										incorrecto</div>
 								</div>
 								<div class="form-group">
-									<label for="Nombre">Nombre</label> <input type="text" name="Nombre" class="form-control" id="Nombre" 
-										placeholder="Nombre"></input>
-								</div>
-								<div class="form-group">
-									<label for="Apellidos">Apellidos</label> <input
-										type="apellidos" class="form-control" id="Apellidos"
-										name="Apellidos"
-										placeholder="Apellidos"></input>
-								</div>
-								<div class="form-group">
-									<label for="Contrasenya">Contrasenya</label> <input
+									<label for="Contrasenya">Contrasenya -Minimo cinco caracteres-</label> <input
 										type="password" class="form-control" id="Contrasenya"
-										name="Contrasenya"
-										placeholder="Contrasenya"></input>
+										name="Contrasenya" placeholder="Contrasenya"></input>
+									<div id="msgErrorRegistroPassword1" class="errores">Contraseña
+										incorrecta</div>
+									<div id="msgErrorRegistroPassword2" class="errores">Introduzca
+										la contraseña</div>
 								</div>
 								<div class="form-group">
 									<label for="VerificacionContrasenya">Verificacion
-										Contrasenya</label> <input type="password"
-										class="form-control" id="VerificacionContrasenya"
-										name="VerificacionContrasenya"
+										Contrasenya</label> <input type="password" class="form-control"
+										id="VerificacionContrasenya" name="VerificacionContrasenya"
 										placeholder="Contrasenya"></input>
+									<div id="msgErrorRegistroVerif1" class="errores">Verificacion
+										incorrecta</div>
+									<div id="msgErrorRegistroVerif2" class="errores">Las
+										contraseñas no coinciden</div>
 								</div>
 								<div class="form-group">
-									<label for="Ciudad">Ciudad</label> <input type="ciudad"
-										name="Ciudad" 
-										class="form-control" id="Ciudad" placeholder="Ciudad"></input>
+									<label for="Nombre">Nombre -Primera letra con mayuscula-</label> <input type="text"
+										name="Nombre" class="form-control" id="Nombre"
+										placeholder="Nombre"></input>
+									<div id="msgErrorRegistroNombre" class="errores">Nombre
+										incorrecto</div>
+
+								</div>
+								<div class="form-group">
+									<label for="Apellidos">Apellidos -Primera letra con mayuscula-</label> <input
+										type="apellidos" class="form-control" id="Apellidos"
+										name="Apellidos" placeholder="Apellidos"></input>
+									<div id="msgErrorRegistroApellidos" class="errores">Apellidos Incorrectos</div>
+
+								</div>
+								<div class="form-group">
+									<label for="Ciudad">Ciudad -Primera letra con mayuscula-</label> <input type="ciudad"
+										name="Ciudad" class="form-control" id="Ciudad"
+										placeholder="Ciudad"></input>
+									<div id="msgErrorRegistroCiudad" class="errores"> Ciudad incorrecta</div>
+										
 								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal" aria-hidden="true">Cerrar</button>
-								<button type="hidden" name="accion" value="registro"
-									class="btn btn-default">Guardar cambios</button>
+								<button type="submit" name="accion" value="registro"
+									id="bRegistro" class="btn btn-default">Guardar cambios</button>
 							</div>
 
 						</form>
@@ -140,4 +176,3 @@
 
 </body>
 </html>
-	

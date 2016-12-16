@@ -1,0 +1,12 @@
+@CHARSET "ISO-8859-1";
+
+
+/*ocultos al principio se muestran luego*/
+.errores{
+    display:none;
+    color: red;
+    font-style: italic;
+    font size:14px;
+    width: 79%;
+    
+}
