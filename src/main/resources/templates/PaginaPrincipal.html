@@ -133,8 +133,8 @@
 						</div>
 						<div class="row col-xs-12 col-md-4 precio">
 							<h4 th:text="${prod.precio}"></h4>
-							<form th:action="@{/wallapoptiw/Producto(id=${prod.id})}"  method="get">
-								<button type="hidden" class="btn btn-default" name="accion" value="Inf">Más información</button>
+							<form th:action="@{/wallapoptiw/Producto}"  method="get">
+								<button type="hidden" class="btn btn-default" name="id" th:value="${prod.id}">Más información</button>
 							</form>
 						</div>
 					</div>

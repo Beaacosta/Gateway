@@ -31,9 +31,9 @@ public class ControladorProducto {
 		return "PaginaPrincipal"; 
 	}
 	
-	@RequestMapping(value="wallapoptiw/Producto/{id}" , method = RequestMethod.GET)
-	public String redirigirProducto(Model model, @ModelAttribute Usuario usuario, @PathVariable("id") int prod_id){
-		Producto p = restTemplate.postForObject("http://localhost:8020/buscar_id", prod_id, Producto.class);
+	@RequestMapping(value="wallapoptiw/Producto" , method = RequestMethod.GET)
+	public String redirigirProducto(Model model, @ModelAttribute Usuario usuario, @RequestParam("id") int id){
+		Producto p = restTemplate.postForObject("http://localhost:8020/buscar_id", id, Producto.class);
 		model.addAttribute("producto", p);
 		return "Producto"; 
 	}
