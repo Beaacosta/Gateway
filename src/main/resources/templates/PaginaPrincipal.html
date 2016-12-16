@@ -74,19 +74,10 @@
 
 				</ul>
 		</nav>
-	</header>
-
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="input-group" id="buscador">
-				<input type="text" class="form-control" placeholder="Buscar..."></input>
-				<span class="input-group-btn"></span>
-					<button class="btn btn-default" type="button">Buscar</button>
-					<button class="btn btn-default" type="button">Busqueda
-						avanzada</button>
-			</div>
+		<div style="text-align:center;">
+			<input type="text" id="cuadrobusquedafotos" class="cuadrobuscar" placeholder="Buscar..."/>
 		</div>
-	</div>
+	</header>
 
 
 	<!-- EMPEZAMOS A LISTAR PRODUCTOS -->
@@ -120,9 +111,8 @@
 						sesion.setAttribute("prod_sesion", p);
 			%>
 			-->
-			
 				<div class="col-xs-12 col-md-4 cajaproducto" th:if="${!lista_productos.isEmpty()}" th:each="prod: ${lista_productos}">
-					<div class="container">
+					<div class="container cont-fotos">
 						<div class="row">
 									<div class="col-xs-3 col-md-1">
 										<img src="/images/carrito.png" width="100" alt="imagenprod1">
@@ -135,7 +125,7 @@
 						<div class="row col-xs-12 col-md-4 precio">
 							<h4 th:text="${prod.precio}"></h4>
 							<form th:action="@{/wallapoptiw/Producto}"  method="get">
-								<button type="hidden" class="btn btn-default" name="id" th:value="${prod.id}">Más información</button>
+								<button type="hidden" class="btn btn-default" name="idProducto" th:value="${prod.idProducto}">Más información</button>
 							</form>
 						</div>
 					</div>
@@ -146,6 +136,25 @@
 		}
 	%>
 	-->
+	<script>
+		$(function(){
+			$("#cuadrobusquedafotos").keyup(actualizar_busqueda);
+		});
+		
+		function actualizar_busqueda(){
+			var filtro = $("#cuadrobusquedafotos").val().toLowerCase();
+			$(".cont-fotos").show();
+			
+			if(filtro!=''){
+				$(".cont-fotos").each(function(){
+					if($(this).html().toLowerCase().indexOf(filtro) == -1){
+						$(this).hide();
+					}
+				})
+			}
+				
+		}
+	</script>
 	</div>
 
 	</div>

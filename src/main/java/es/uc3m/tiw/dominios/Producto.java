@@ -14,7 +14,7 @@ import static javax.persistence.CascadeType.ALL;
 
 public class Producto{
 	
-	private int id;
+	private int idProducto;
 	private String titulo;
 	private String categoria;
 	private String descripcion;
@@ -37,11 +37,11 @@ public class Producto{
         this.estado = estado;
         this.picture = picture;
 	}
-	public int getId() {
-		return id;
+	public int getIdProducto() {
+		return idProducto;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
 	}
 	public String getTitulo() {
 		return titulo;

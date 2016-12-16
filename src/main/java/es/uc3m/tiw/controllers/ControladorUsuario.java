@@ -1,6 +1,8 @@
 package es.uc3m.tiw.controllers;
 
 
+import static org.assertj.core.api.Assertions.useDefaultDateFormatsOnly;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
+import antlr.collections.List;
 import es.uc3m.tiw.dominios.Usuario;
 
 @SessionAttributes({"usuario", "error"})
@@ -167,6 +170,8 @@ public class ControladorUsuario {
 		model.addAttribute("error", "");
 		return "Index"; 
 	}
+	
+
 	
 
 }

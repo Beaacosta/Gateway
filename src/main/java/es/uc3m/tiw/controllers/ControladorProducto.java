@@ -32,8 +32,8 @@ public class ControladorProducto {
 	}
 	
 	@RequestMapping(value="wallapoptiw/Producto" , method = RequestMethod.GET)
-	public String redirigirProducto(Model model, @ModelAttribute Usuario usuario, @RequestParam("id") int id){
-		Producto p = restTemplate.postForObject("http://localhost:8020/buscar_id", id, Producto.class);
+	public String redirigirProducto(Model model, @ModelAttribute Usuario usuario, @RequestParam("idProducto") int idProducto){
+		Producto p = restTemplate.postForObject("http://localhost:8020/buscar_id", idProducto, Producto.class);
 		model.addAttribute("producto", p);
 		return "Producto"; 
 	}
@@ -41,7 +41,8 @@ public class ControladorProducto {
 	@RequestMapping(value="wallapoptiw/MisProductos")
 	public String redirigirMisProductos(Model model, @ModelAttribute Usuario usuario){
 		model.addAttribute("productos_usuario", "");
-		List<Producto> p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
+		List<Producto> p = null;
+		p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
 		int bea = usuario.getId();
 		model.addAttribute("productos_usuario", p);
 		return "MisProductos"; 
@@ -97,10 +98,20 @@ public class ControladorProducto {
 		}
 	}
 	
-	@RequestMapping(value="wallapoptiw/EliminarProducto", method = RequestMethod.GET )
-	public String EliminarProducto(Model model, @RequestParam("id") int id){
-		restTemplate.postForObject("http://localhost:8020/eliminar_producto", id, Producto.class);
+	@RequestMapping(value="wallapoptiw/EliminarProducto", method = RequestMethod.GET)
+	public String EliminarProducto(Model model, @ModelAttribute Usuario usuario, @RequestParam("idProducto") int idProducto){
+		int bea = usuario.getId();
+		restTemplate.postForObject("http://localhost:8020/eliminar_producto", idProducto, Producto.class);
+		int bea2 = usuario.getId();
 		return "redirect:/wallapoptiw/MisProductos";
+	}
+	
+	@RequestMapping(value="wallapoptiw/buscar", method = RequestMethod.POST)
+	public String devolverBusqueda(Model model, @ModelAttribute Usuario usuario, @RequestParam("busqueda") String busqueda){
+		model.addAttribute("error", "");
+		List<Producto> p = null;
+		p = restTemplate.postForObject("http://localhost:8020/productos_titulo", busqueda, List.class);
+		return "redirect:/wallapoptiw/PPrincipal"; 
 	}
 	
 }
