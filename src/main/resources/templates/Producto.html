@@ -56,42 +56,33 @@
 					sesion.setAttribute("mensajeRegistro", null);
 				%>
 	-->
-	<header class="container-fluid">
+<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
-			<a href="PaginaPrincipal.html"><img src="/images/logo.png" width="100" alt="logo Wallapop"></img></a>
-
+			<form action="pag_principal" method="post">
+				<a th:href="@{/wallapoptiw/PPrincipal2}"><img src="/images/logo.png" width="100"></img></a>
+			</form>
 		</div>
 		<div class="col-xs-9 col-sm-5">
-			<h1><b>WALLAPOPTIW</b></h1>
+			<h1>
+				<b>WALLAPOPTIW</b>
+			</h1>
 		</div>
 		<nav class="col-xs-12 col-sm-4">
-			<ul id="menu" class="nav navbar-nav navbar-right">
-					<form th:action="@{/wallapoptiw/MiPerfilEditar}"  method="post">
-					<li><button type="submit" name="accion" value="Editar"
-							class="btn btn-default">
+				<ul id="menu" class="nav navbar-nav navbar-right">
+					<li><a th:href="@{/wallapoptiw/MiPerfilEditar}">
 							<img src="/images/usuario.png" width="30"></img>
-						</button></li>
-					</form>
-					<form th:action="@{/wallapoptiw/MisProductos}"  method="post">
-					<li><button type="submit" name="accion" value="Productos"
-							class="btn btn-default">
+						</a></li>
+					<li><a th:href="@{/wallapoptiw/MisProductos2}">
 							<img src="/images/productos.png" width="30" height="30"></img>
-						</button></li>
-					</form>
-					<form th:action="@{/wallapoptiw/Chat}"  method="post">
-					<li><button type="submit" name="accion" value="Chat"
-							class="btn btn-default">
+						</a></li>
+					<li><a th:href="@{/wallapoptiw/Chat}">
 							<img src="/images/chats.png" width="30"></img>
-						</button></li>
-					</form>
-					<form th:action="@{/wallapoptiw/CerrarSesion}"  method="post">
-					<li><button type="submit" name="accion" value="cerrar"
-							class="btn btn-default">
+						</a></li>
+					<li><a th:href="@{/wallapoptiw/CerrarSesion}">
 							<img src="/images/cerrar.png" width="30"></img>
-						</button></li>
-					</form>
+						</a></li>
 				</ul>
-		</nav>	
+		</nav>
 	</header>
 	<!--  
 	<%  
