@@ -105,7 +105,7 @@ public class ControladorUsuario {
 		}
 	}
 	
-	@RequestMapping(value="wallapoptiw/MiPerfilContrasenya", method = RequestMethod.POST)
+	@RequestMapping(value="wallapoptiw/MiPerfilContrasenya")
 	public String devolverMiPerfilContrasenya(Model model, @ModelAttribute Usuario usuario){
 		model.addAttribute("error", "");
 		return "MiPerfil-contrasenya"; 
@@ -131,7 +131,7 @@ public class ControladorUsuario {
 	}
 	
 	
-	@RequestMapping(value="wallapoptiw/MiPerfilEditar", method = RequestMethod.POST)
+	@RequestMapping(value="wallapoptiw/MiPerfilEditar")
 	public String devolverMiPerfilEditar(Model model, @ModelAttribute Usuario usuario){
 		model.addAttribute("error", "");
 		return "MiPerfil-editar"; 
@@ -166,7 +166,6 @@ public class ControladorUsuario {
 
 	@RequestMapping(value="wallapoptiw/CerrarSesion")
 	public String cerrarSesion(Model model, @ModelAttribute Usuario usuario){
-		model.addAttribute("usuario",null);
 		model.addAttribute("error", "");
 		return "Index"; 
 	}

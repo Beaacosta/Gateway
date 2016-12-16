@@ -25,21 +25,39 @@ public class ControladorProducto {
 	RestTemplate restTemplate;
 	
 	@RequestMapping(value="wallapoptiw/PPrincipal")
-	public String redirigirPPrincipal(Model model, @ModelAttribute Usuario usuario){
+	public String redirigirPPrincipal(Model model, @ModelAttribute Usuario usuario, @ModelAttribute String error){
 		List<Producto> p = restTemplate.postForObject("http://localhost:8020/listar_productos", null, List.class);
 		model.addAttribute("lista_productos", p);
 		return "PaginaPrincipal"; 
 	}
-	
+	//Cuando pipnchemos en el logo
+	@RequestMapping(value="wallapoptiw/PPrincipal2")
+	public String redirigirPPrincipal2(Model model, @ModelAttribute Usuario usuario, @ModelAttribute String error){
+		model.addAttribute("error", "");
+		List<Producto> p = restTemplate.postForObject("http://localhost:8020/listar_productos", null, List.class);
+		model.addAttribute("lista_productos", p);
+		return "PaginaPrincipal"; 
+	}
 	@RequestMapping(value="wallapoptiw/Producto" , method = RequestMethod.GET)
 	public String redirigirProducto(Model model, @ModelAttribute Usuario usuario, @RequestParam("idProducto") int idProducto){
+		model.addAttribute("error", "");
 		Producto p = restTemplate.postForObject("http://localhost:8020/buscar_id", idProducto, Producto.class);
 		model.addAttribute("producto", p);
 		return "Producto"; 
 	}
 	
 	@RequestMapping(value="wallapoptiw/MisProductos")
-	public String redirigirMisProductos(Model model, @ModelAttribute Usuario usuario){
+	public String redirigirMisProductos(Model model, @ModelAttribute Usuario usuario, @ModelAttribute String error){
+		model.addAttribute("productos_usuario", "");
+		List<Producto> p = null;
+		p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
+		int bea = usuario.getId();
+		model.addAttribute("productos_usuario", p);
+		return "MisProductos"; 
+	}
+	//Cuando pinchemos en el icono
+	@RequestMapping(value="wallapoptiw/MisProductos2")
+	public String redirigirMisProductos2(Model model, @ModelAttribute Usuario usuario, @ModelAttribute String error){
 		model.addAttribute("productos_usuario", "");
 		List<Producto> p = null;
 		p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
@@ -52,7 +70,7 @@ public class ControladorProducto {
 	/*Añadir producto*/
 	@RequestMapping (value="wallapoptiw/anyadir_producto", method = RequestMethod.POST)
 	public String anyadirProducto(Model model, Usuario usuario, @RequestParam("NombreProducto") String nombre,@RequestParam("Categoria") String categoria, @RequestParam("Descripcion") String descripcion,  @RequestParam("Precio") double precio,  @RequestParam("Estado") String estado ){
-		
+			model.addAttribute("error", "");
 			Producto producto = new Producto();
 			producto.setTitulo(nombre);
 			producto.setCategoria(categoria);
@@ -68,16 +86,9 @@ public class ControladorProducto {
 	}
 	
 	
-	@RequestMapping(value="wallapoptiw/MiProductoEditar", method = RequestMethod.POST)
-	public String devolverProductoEditar(Model model, @ModelAttribute Producto producto, @ModelAttribute Usuario usuario){
-		model.addAttribute("producto", producto);
-		model.addAttribute("usuario",usuario);
-		return "MisProductos"; 
-	}
-	
 	@RequestMapping(value="wallapoptiw/MiProductoEditar2", method = RequestMethod.POST)
 	public String ProductoEditar(Model model, @ModelAttribute Usuario usuario, @RequestParam("IdProducto") int id, @RequestParam("NombreProducto") String nombre,@RequestParam("Categoria") String categoria, @RequestParam("Descripcion") String descripcion,  @RequestParam("Precio") double precio,  @RequestParam("Estado") String estado ){
-
+		model.addAttribute("error", "");
 		if(nombre.equals("")||categoria.equals("")||descripcion.equals("")||estado.equals("")){
 			model.addAttribute("error", "Existen campos vacíos. Rellene todos, por favor.");
 			return "MisProductos"; 		}
@@ -98,6 +109,7 @@ public class ControladorProducto {
 	
 	@RequestMapping(value="wallapoptiw/EliminarProducto", method = RequestMethod.GET)
 	public String EliminarProducto(Model model, @ModelAttribute Usuario usuario, @RequestParam("idProducto") int idProducto){
+		model.addAttribute("error", "");
 		int bea = usuario.getId();
 		restTemplate.postForObject("http://localhost:8020/eliminar_producto", idProducto, Producto.class);
 		int bea2 = usuario.getId();
