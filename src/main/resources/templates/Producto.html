@@ -110,13 +110,13 @@
 		<div class="row col-xs-12 producto container-fluid">
 			<div class="row" id="cajaproducto_linea1">
 				<div class="col-xs-4">
-					<span>"*{categoria}"</span>
+				<p th:text="*{categoria}"></p>
 				</div>
 				<div class="col-xs-4">
-					<span>"*{producto.id}"</span>
+				<p th:text="*{id}"></p>
 				</div>
 				<div class="col-xs-4">
-					<span>"*{producto.estado}"</span>
+				<p th:text="*{estado}"></p>
 				</div>
 			<hr></hr>
 			</div>
@@ -126,13 +126,13 @@
 
 				</div>
 				<div class="col-xs-12 col-sm-9">
-					<h2>"*{producto.titulo}"</h2>
-					<p>"*{producto.descripcion}"</p>
-					<h4 class="precio">"*{producto.precio}"</h4>
+					<h2 th:text="*{titulo}"></h2>
+					<h4 th:text="*{descripcion}"></h4>
+					<h3 class="precio" th:text="*{precio}"></h3>
 				</div>
 			</div>
 			<div class="row">
-				<button class="btn btn-default" type="button" id="boton_chat">Abrir chat</button>
+				<button class="btn btn-default" type="button" id="boton_chat">Enviar Mensaje</button>
 			</div>
 		</div>
 	</div>
