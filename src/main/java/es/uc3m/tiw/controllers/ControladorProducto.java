@@ -17,7 +17,7 @@ import es.uc3m.tiw.dominios.Producto;
 import es.uc3m.tiw.dominios.Usuario;
 
 
-@SessionAttributes({"producto", "lista_productos","error", "usuario"})
+@SessionAttributes({"producto", "lista_productos","error", "usuario", "productos_usuario"})
 @Controller
 public class ControladorProducto {
 
@@ -40,10 +40,11 @@ public class ControladorProducto {
 	
 	@RequestMapping(value="wallapoptiw/MisProductos")
 	public String redirigirMisProductos(Model model, @ModelAttribute Usuario usuario){
-		model.addAttribute("usuario", usuario);
+		List<Producto> p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
+		model.addAttribute("productos_usuario", p);
 		return "MisProductos"; 
 	}
-	
+
 	
 	/*Añadir producto*/
 	@RequestMapping (value="wallapoptiw/anyadir_producto", method = RequestMethod.POST)
