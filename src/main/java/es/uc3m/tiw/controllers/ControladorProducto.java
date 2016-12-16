@@ -40,7 +40,9 @@ public class ControladorProducto {
 	
 	@RequestMapping(value="wallapoptiw/MisProductos")
 	public String redirigirMisProductos(Model model, @ModelAttribute Usuario usuario){
+		model.addAttribute("productos_usuario", "");
 		List<Producto> p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
+		int bea = usuario.getId();
 		model.addAttribute("productos_usuario", p);
 		return "MisProductos"; 
 	}
@@ -96,12 +98,10 @@ public class ControladorProducto {
 		}
 	}
 	
-	@RequestMapping(value="wallapoptiw/EliminarProducto", method = RequestMethod.POST)
-	public String EliminarProducto(Model model, @ModelAttribute Usuario usuario,@ModelAttribute Producto producto){
-		restTemplate.postForObject("http://localhost:8020/eliminar_producto", producto, Producto.class);
-		model.addAttribute("producto",null);
-		model.addAttribute("usuario",usuario);
-		model.addAttribute("error", null);
-		return "MisProductos"; 
+	@RequestMapping(value="wallapoptiw/EliminarProducto", method = RequestMethod.GET )
+	public String EliminarProducto(Model model, @RequestParam("id") int id){
+		restTemplate.postForObject("http://localhost:8020/eliminar_producto", id, Producto.class);
+		return "redirect:/wallapoptiw/MisProductos";
 	}
+	
 }

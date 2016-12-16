@@ -181,29 +181,19 @@
 								<img src="/images/carrito.png" width="100" alt="imagenprod1"></img>
 							</div>
 							<div class="col-xs-9 col-md-3 datos" th:value="${prod_usu.descripcion}"> 
-								<a href="Producto.jsp?id=${prod_sesion.id}"> <h2 th:text="${prod_usu.titulo}"></h2></a>	
+								<h2 th:text="${prod_usu.titulo}"></h2>
 							<h4></h4>
 							</div>
 						</div>
 						<div class="row col-xs-12 col-md-4">
 							<h2 class="precio" th:text="${prod_usu.precio}" > </h2>
 							<div class="centrarbotones">
-							<button type="button" class="btn btn-default" data-toggle="modal"  data-target="#ventanaEliminarProd" >Eliminar</button>								
-								
-								<!--  
-								<div class="modal fade" id="ventanaEliminarProd">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-body black">
-													<span>¿Estás seguro de que quieres eliminar el producto?
-													<button type="hidden" name="accion" value="eliminar" class="btn btn-default">Si</button>
-													<button type="hidden" name="accion" value="no_eliminar" class="btn btn-default">No</button>		
-											</div>
-										</div>
-									</div>
-								</div>
-								-->
-									
+							<form th:action="@{/wallapoptiw/Producto}"  method="get">
+								<button type="hidden" class="btn btn-default" name="id" th:value="${prod_usu.id}">Más información</button>
+							</form>
+							<form th:action="@{/wallapoptiw/EliminarProducto}"  method="get">
+							<button type="hidden" class="btn btn-default" name="id" th:value="${prod_usu.id}">Eliminar</button>								
+							</form>	
 							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ventanaModificarProd">Modificar</button>	
 							<div class="modal fade" id="ventanaModificarProd">
 								<div class="modal-dialog">
