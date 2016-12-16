@@ -90,7 +90,7 @@
 					<div class="modal fade" id="ventanaAnyadirProd">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<form th:action="@{/wallapoptiw/MisProductos}"  method="post">
+								<form th:action="@{/wallapoptiw/anyadir_producto}"  method="post">
 								
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -101,35 +101,35 @@
 									<div class="modal-body">
 										<div class="form-group">
 											<label for="NombreProducto">Nombre del producto</label>
-											<input type="text" class="form-control" th:value="*{titulo}" id="NombreProducto" name="NombreProducto" placeholder="NombreProducto"></input>
+											<input type="text" class="form-control" id="NombreProducto" name="NombreProducto" placeholder="NombreProducto"></input>
 										</div>
 										<div class="form-group">
 												<label for="Categoria">Categoría</label>
 
-											<select class="form-control" th:value="*{categoria}">
-											  <option>Otras categorías</option>
-											  <option>Mascotas</option>
-											  <option>Vehículos</option>
-											  <option>Inmobiliaria</option>
-											  <option>Mobiliario</option>
-											  <option>Tecnología</option>
-											  <option>Textil</option>
-											  <option>Deporte</option>
-											  <option>Ocio</option>
+											<select class="form-control">
+											  <option id="Categoria">Otras categorías</option>
+											  <option id="Categoria">Mascotas</option>
+											  <option id="Categoria">Vehículos</option>
+											  <option id="Categoria">Inmobiliaria</option>
+											  <option id="Categoria">Mobiliario</option>
+											  <option id="Categoria">Tecnología</option>
+											  <option id="Categoria">Textil</option>
+											  <option id="Categoria">Deporte</option>
+											  <option id="Categoria">Ocio</option>
 											</select>
 										</div>
 										<div class="form-group">
 											<label for="Descripcion">Descripcion</label>
-											<input type="text" class="form-control" th:value="*{descripcion}" id="Descripcion" name="Descripcion" placeholder="Descripcion"></input>
+											<input type="text" class="form-control" id="Descripcion" name="Descripcion" placeholder="Descripcion"></input>
 										</div>
 										<div class="form-group">
 											<label for="Precio">Precio</label>
-											<input type="text" class="form-control" th:value="*{precio}" id="Precio" name="Precio" placeholder="Precio"></input>
+											<input type="text" class="form-control" id="Precio" name="Precio" placeholder="Precio"></input>
 										</div>
 										<div class="btn-group">
 												<label for="Estado">Estado</label>
 
-										  <select class="form-control" th:value="*{estado}">
+										  <select class="form-control" >
 											  <option>Disponible</option>
 											  <option>Reservado</option>
 											  <option>Vendido</option>
@@ -137,7 +137,6 @@
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 										<button type="hidden" name="accion" value="producto" class="btn btn-default">Guardar cambios</button>
 									</div>
 								</form>	
