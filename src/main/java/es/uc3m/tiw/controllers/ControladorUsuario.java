@@ -23,11 +23,13 @@ public class ControladorUsuario {
 	@RequestMapping(value="wallapoptiw/")
 	public String devolverIndex(Model modelo){
 		modelo.addAttribute("usuario", new Usuario());
+		modelo.addAttribute("error", "");
 		return "Index"; 
 	}
 
 	@RequestMapping(value="wallapoptiw/Index")
 	public String redirigirIndex(Model modelo){
+		modelo.addAttribute("error", "");
 		return "redirect:/wallapoptiw/"; 
 	}
 
@@ -155,14 +157,14 @@ public class ControladorUsuario {
 	public String EliminarUsuario(Model model, @ModelAttribute Usuario usuario){
 		restTemplate.postForObject("http://localhost:8010/eliminar_usuario", usuario, Usuario.class);
 		model.addAttribute("usuario",null);
-		model.addAttribute("error", null);
+		model.addAttribute("error", "");
 		return "Index"; 
 	}
 
 	@RequestMapping(value="wallapoptiw/CerrarSesion")
 	public String cerrarSesion(Model model, @ModelAttribute Usuario usuario){
 		model.addAttribute("usuario",null);
-		model.addAttribute("error", null);
+		model.addAttribute("error", "");
 		return "Index"; 
 	}
 	

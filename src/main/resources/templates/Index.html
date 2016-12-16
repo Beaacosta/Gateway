@@ -30,6 +30,10 @@
 </head>
 
 <body>
+
+    <div class="alert alert-info" th:if="${error !=''}" >
+  		<h4 th:text="${error}"></h4>
+	</div>
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
 			<form action="pag_principal" method="post">
