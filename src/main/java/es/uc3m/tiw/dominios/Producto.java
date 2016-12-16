@@ -22,7 +22,7 @@ public class Producto{
     private String estado; 
     private String picture;
 
-	private int usuario_id;
+	private int usuario;
 	
 	public Producto() {
 		// TODO Auto-generated constructor stub
@@ -79,11 +79,11 @@ public class Producto{
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	public int getUsuario_id() {
-		return usuario_id;
+	public int getUsuario() {
+		return usuario;
 	}
-	public void setUsuario_id(int usuario_id) {
-		this.usuario_id = usuario_id;
+	public void setUsuario(int usuario) {
+		this.usuario = usuario;
 	}
 
 	

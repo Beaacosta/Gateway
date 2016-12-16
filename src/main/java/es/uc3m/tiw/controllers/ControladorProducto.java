@@ -58,12 +58,11 @@ public class ControladorProducto {
 			producto.setDescripcion(descripcion);
 			producto.setPrecio(precio);	
 			producto.setEstado(estado);
-			producto.setUsuario_id(usuario.getId());
+			producto.setUsuario(usuario.getId());
 			Producto p = restTemplate.postForObject("http://localhost:8020/anyadir_producto", producto, Producto.class);
-			model.addAttribute("producto", p);
 			//Se ha añadido el producto
 			model.addAttribute("error", "Se ha añadido el producto correctamente.");
-			return "PaginaPrincipal";
+			return "redirect:/wallapoptiw/MisProductos";
 		
 	}
 	
@@ -89,7 +88,7 @@ public class ControladorProducto {
 		producto.setDescripcion(descripcion);
 		producto.setPrecio(precio);	
 		producto.setEstado(estado);
-		producto.setUsuario_id(usuario.getId());
+		producto.setUsuario(usuario.getId());
 		restTemplate.postForObject("http://localhost:8020/modificar_producto", producto, Producto.class);
 		model.addAttribute("producto",producto);
 		model.addAttribute("usuario",usuario);
