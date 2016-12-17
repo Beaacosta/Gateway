@@ -30,6 +30,8 @@ public class ControladorProducto {
 		model.addAttribute("lista_productos", p);
 		return "PaginaPrincipal"; 
 	}
+
+	
 	//Cuando pipnchemos en el logo
 	@RequestMapping(value="wallapoptiw/PPrincipal2")
 	public String redirigirPPrincipal2(Model model, @ModelAttribute Usuario usuario, @ModelAttribute String error){
@@ -87,21 +89,22 @@ public class ControladorProducto {
 	
 	
 	@RequestMapping(value="wallapoptiw/MiProductoEditar2", method = RequestMethod.POST)
-	public String ProductoEditar(Model model, @ModelAttribute Usuario usuario, @RequestParam("IdProducto") int id, @RequestParam("NombreProducto") String nombre,@RequestParam("Categoria") String categoria, @RequestParam("Descripcion") String descripcion,  @RequestParam("Precio") double precio,  @RequestParam("Estado") String estado ){
+	public String ProductoEditar(Model model, @ModelAttribute Usuario usuario, @ModelAttribute Producto producto, @RequestParam("NombreProducto") String nombre,@RequestParam("Categoria") String categoria, @RequestParam("Descripcion") String descripcion,  @RequestParam("Precio") double precio,  @RequestParam("Estado") String estado ){
 		model.addAttribute("error", "");
 		if(nombre.equals("")||categoria.equals("")||descripcion.equals("")||estado.equals("")){
 			model.addAttribute("error", "Existen campos vacíos. Rellene todos, por favor.");
 			return "MisProductos"; 		}
 		else{
-		Producto producto = new Producto();
-		producto.setIdProducto(id);
-		producto.setTitulo(nombre);
-		producto.setCategoria(categoria);
-		producto.setDescripcion(descripcion);
-		producto.setPrecio(precio);	
-		producto.setEstado(estado);
-		producto.setUsuario(usuario.getId());
-		restTemplate.postForObject("http://localhost:8020/modificar_producto", producto, Producto.class);
+		Producto p = new Producto();
+		
+		p.setIdProducto(producto.getIdProducto());
+		p.setTitulo(nombre);
+		p.setCategoria(categoria);
+		p.setDescripcion(descripcion);
+		p.setPrecio(precio);	
+		p.setEstado(estado);
+		p.setUsuario(usuario.getId());
+		restTemplate.postForObject("http://localhost:8020/modificar_producto", p, Producto.class);
 		model.addAttribute("error", "Los datos se han modificado correctamente.");
 		return "redirect:/wallapoptiw/MisProductos"; 			
 		}
@@ -110,11 +113,24 @@ public class ControladorProducto {
 	@RequestMapping(value="wallapoptiw/EliminarProducto", method = RequestMethod.GET)
 	public String EliminarProducto(Model model, @ModelAttribute Usuario usuario, @RequestParam("idProducto") int idProducto){
 		model.addAttribute("error", "");
-		int bea = usuario.getId();
 		restTemplate.postForObject("http://localhost:8020/eliminar_producto", idProducto, Producto.class);
-		int bea2 = usuario.getId();
 		return "redirect:/wallapoptiw/MisProductos";
 	}
+	
+	
+	//Coger el Producto de la vista
+	@RequestMapping(value="wallapoptiw/EditarProducto", method = RequestMethod.GET)
+	public String redirigirEditarProducto(Model model, @ModelAttribute Usuario usuario, @RequestParam("idProducto") int idProducto){
+		Producto p = restTemplate.postForObject("http://localhost:8020/buscar_id", idProducto, Producto.class);
+		model.addAttribute("producto", p);
+		return "redirect:/wallapoptiw/PEditar"; 
+	}
+	
+	//Ir a editarProducto
+	@RequestMapping(value="wallapoptiw/PEditar")
+	public String redirigirPEditar(Model model, @ModelAttribute Usuario usuario, @ModelAttribute Producto producto){
+		return "EditarProducto"; 
+	}	
 	
 	
 }
