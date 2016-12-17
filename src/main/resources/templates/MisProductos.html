@@ -136,29 +136,6 @@
 				</ul>
 			</div>
 			<div class="col-xs-9">
-			<!--  
-				<%  
-				
-					Usuario user = new Usuario();
-					user = (Usuario) sesion.getAttribute("usuario_sesion");								
-					EntityManager em = (EntityManager) sesion.getAttribute("em");
-					UserTransaction ut = (UserTransaction) sesion.getAttribute("ut");
-					ProductoDAOImpl prod = new ProductoDAOImpl(em, ut);
-					
-					Collection<Producto> coleccion = prod.buscarProductosDeUsuario(user);
-					if(coleccion.isEmpty()){
-				%>
-				<div class="col-xs-12 col-md-4 cajaproducto">
-					<p> No tienes productos disponibles</p>
-				</div>
-				<% 	
-					}else{
-						for(Producto p: coleccion){
-							if(p.getUsuario().getId()== user.getId()){
-							sesion.setAttribute("prod_sesion", p);
-						
-				%>
-				-->
 				<div class="col-xs-12 col-md-4 cajaproducto" th:if="${productos_usuario.isEmpty()}" >
 					<p>No tienes productos. Añade uno nuevo</p>
 				</div>
@@ -176,76 +153,18 @@
 						</div>
 						<div class="row col-xs-12 col-md-4">
 							<h2 class="precio" th:text="${prod_usu.precio}" > </h2>
-							<div class="centrarbotones">
+							<div class="centrarbotones">  
 							<form th:action="@{/wallapoptiw/EliminarProducto}"  method="get">												
 							<button type="hidden" class="btn btn-default" name="idProducto" th:value="${prod_usu.idProducto}">Eliminar</button>								
-							</form>	
-							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#ventanaModificarProd">Modificar</button>	
-							<div class="modal fade" id="ventanaModificarProd">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-											<h4 class="modal-title">Modifica tu producto</h4>
-										</div>
-										<form th:action="@{/wallapoptiw/MiProductoEditar2}"  method="post">								
-										<div class="modal-body">
-											<div class="form-group">
-												<label for="IdProducto">Id del producto</label>
-												<input type="IdProducto" class="form-control" th:value="${prod_usu.idProducto}" name="IdProducto" id="IdProducto" placeholder="IdProducto"></input>
-											</div>
-											<div class="form-group">
-												<label for="NombreProducto">Nombre del producto</label>
-												<input type="NombreProducto" class="form-control" th:value="${prod_usu.titulo}" name="NombreProducto" id="NombreProducto" placeholder="NombreProducto"></input>
-											</div>
-											<div class="form-group">
-												<label for="Categoria">Categoría</label>
-												<select name="Categoria" id="Categoria" class="form-control">
-											  <option value="Otras categorias">Otras categorías</option>
-											  <option value="Mascotas">Mascotas</option>
-											  <option value="Vehiculos">Vehículos</option>
-											  <option value="Inmobiliaria">Inmobiliaria</option>
-											  <option value="Mobiliario">Mobiliario</option>
-											  <option value="Tecnología">Tecnología</option>
-											  <option value="Textil">Textil</option>
-											  <option value="Deporte">Deporte</option>
-											  <option value="Ocio">Ocio</option>
-											</select>
-											</div>
-											<div class="form-group">
-												<label for="Descripcion">Descripcion</label>
-												<input type="Descripcion" class="form-control" th:value="${prod_usu.descripcion}" name="Descripcion" id="Descripcion" placeholder="Descripcion"></input>
-											</div>
-											<div class="form-group">
-												<label for="Precio">Precio</label>
-												<input type="Precio" class="form-control" th:value="${prod_usu.precio}" name="Precio" id="Precio" placeholder="Precio"></input>
-											</div>
-											<div class="form-group">
-												<label for="Estado">Estado</label>
-											<select name="Estado" id="Estado" class="form-control">
-											  <option value="Disponible">Disponible</option>
-											  <option value="Reservado">Reservado</option>
-											  <option value="Vendido">Vendido</option>
-											</select>
-										  </div>
-									</div>
-									<div class="modal-footer">
-										<button type="submit" name="accion" class="btn btn-default">Guardar cambios</button>
-										</div>
-									</form>		
-				</div>
-								</div>	
-							</div>
+							</form>
+							<form th:action="@{/wallapoptiw/EditarProducto}" method="get">
+							<button type="hidden" class="btn btn-default" name="idProducto" th:value="${prod_usu.idProducto}">Modificar</button>									
+							</form>
 							</div>
 						</div>
 					</div>
 				</div>
 				</form>
-				<!--  
-				<%	}
-				}
-				}%>	
-				-->
 			</div>
 		</div>
 	</div>

@@ -62,8 +62,9 @@
 				</ul>
 		</nav>
 		<div style="text-align:center;">
-			<input type="text" id="cuadrobusquedafotos" class="cuadrobuscar" placeholder="Buscar..."/>
+			<input type="text" id="cuadrobusquedafotos" class="form-control" placeholder="Buscar..."/>
 		</div>
+		<br></br>
 	</header>
 
 
@@ -114,9 +115,11 @@
 							<form th:action="@{/wallapoptiw/Producto}"  method="get">
 								<button type="hidden" class="btn btn-default" name="idProducto" th:value="${prod.idProducto}">Más información</button>
 							</form>
-						</div>
-					</div>
-				</div>
+										</div>
+									</div>
+								</div>		
+					
+				
 	<!--  
 	<%
 		}
