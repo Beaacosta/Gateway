@@ -32,7 +32,7 @@ public class ControladorProducto {
 	}
 
 	
-	//Cuando pipnchemos en el logo
+	//Cuando pinchemos en el logo
 	@RequestMapping(value="wallapoptiw/PPrincipal2")
 	public String redirigirPPrincipal2(Model model, @ModelAttribute Usuario usuario, @ModelAttribute String error){
 		model.addAttribute("error", "");

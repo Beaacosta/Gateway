@@ -18,7 +18,7 @@ import es.uc3m.tiw.dominios.Conversacion;
 import es.uc3m.tiw.dominios.Producto;
 import es.uc3m.tiw.dominios.Usuario;
 
-@SessionAttributes({"usuario", "mensajes", "error"})
+@SessionAttributes({"usuario", "receptor"})
 @Controller
 public class ControladorChat {
 
@@ -38,15 +38,30 @@ public class ControladorChat {
 	}
 	
 	@RequestMapping (value="wallapoptiw/anyadir_chat", method = RequestMethod.POST)
-	public String anyadirChat(Model model, @ModelAttribute Usuario usuario, @RequestParam("Mensaje") String mensaje, @RequestParam("Receptor") int receptor){
+	public String anyadirChat(Model model, @ModelAttribute Usuario usuario, @RequestParam("Mensaje") String mensaje, @ModelAttribute("receptor") Usuario receptor){
 			Chat chat = new Chat();
-			chat.setFecha(Calendar.getInstance());
 			chat.setEmisor(usuario.getId());
-			chat.setReceptor(receptor);
+			chat.setReceptor(receptor.getId());
 			chat.setMensaje(mensaje);
 			restTemplate.postForObject("http://localhost:8030/anyadir_mensaje", chat, Chat.class);
-			model.addAttribute("error", "Su mensaje ha sido enviado.");
+			//model.addAttribute("error", "Su mensaje ha sido enviado.");
 			return "redirect:/wallapoptiw/PPrincipal";
 		
 	}
+	
+	//Coger el Usuario del producto de la vista
+	@RequestMapping(value="wallapoptiw/EnviarMensaje", method = RequestMethod.GET)
+	public String enviarMensaje(Model model, @ModelAttribute Usuario usuario, @RequestParam("usuario") int receptor){
+		Usuario u = new Usuario();
+		u.setApellidos("ss");
+		u.setCiudad("ciudad");
+		u.setId(receptor);
+		u.setMail("dgfhd");
+		u.setNombre("dff");
+		u.setPassword("def");
+		Usuario r = restTemplate.postForObject("http://localhost:8010/buscar_id", u, Usuario.class);
+		model.addAttribute("receptor", r);
+		return "mail"; 
+	}
+
 }

@@ -98,12 +98,12 @@ public class ControladorUsuario {
 			usuario.setMail(mail);	
 			usuario.setPassword(password);
 			Usuario copi = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
-			if(!copi.equals(null)){
+			if(copi!=null){
 				model.addAttribute("error", "El email introducido ya existe, pruebe con otro.");
 				return "Index";
 			}
 			else{
-				Usuario u = restTemplate.postForObject("http://localhost:8010/anyadir_usuario", usuario, Usuario.class);
+				Usuario u= restTemplate.postForObject("http://localhost:8010/anyadir_usuario", usuario, Usuario.class);
 				model.addAttribute("usuario", u);
 				//registro satisfactorio
 				model.addAttribute("error", "El registro se ha realizado correctamente.");
