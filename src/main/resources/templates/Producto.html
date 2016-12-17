@@ -123,7 +123,9 @@
 				</div>
 			</div>
 			<div class="row">
-				<button class="btn btn-default" type="button" id="boton_chat">Enviar Mensaje</button>
+				<form th:action="@{/wallapoptiw/EnviarMensaje}"  method="get">
+					<button type="hidden" class="btn btn-default" name="usuario" th:value="*{usuario}">Enviar mensaje</button>
+				</form>
 			</div>
 		</div>
 	</div>

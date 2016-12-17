@@ -17,15 +17,17 @@ import static javax.persistence.CascadeType.ALL;
 
 public class Chat implements Serializable {
 
-	private Calendar fecha;
+	private int id_chat;
 	private String mensaje;
 	private int emisor;
 	private int receptor;
-	public Calendar getFecha() {
-		return fecha;
+
+	
+	public int getId_chat() {
+		return id_chat;
 	}
-	public void setFecha(Calendar fecha) {
-		this.fecha = fecha;
+	public void setId_chat(int id_chat) {
+		this.id_chat = id_chat;
 	}
 	public String getMensaje() {
 		return mensaje;
@@ -45,6 +47,7 @@ public class Chat implements Serializable {
 	public void setReceptor(int receptor) {
 		this.receptor = receptor;
 	}
+	
 	
 	
 }
