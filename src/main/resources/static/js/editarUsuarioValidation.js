@@ -71,4 +71,68 @@ $("#bMiPerfilEditar").click(function(){
 })
 
 
+
+
+
+
+$("#bEditarPassword").click(function(){
+	
+var todoCorrecto=true;
+
+
+
+	
+	/*variables*/
+
+	var lastPassword = $("#ContrasenyaActual").val();
+	var newPassword = $("#NuevaContrasenya").val();
+	var newVerifPassword = $("#VerificarContrasenya").val();
+	
+	
+	/*Contraseña antigua bien escrita*/
+	if(!exprContraseña.test(lastPassword)|| lastPassword == null || lastPassword.length == 0 ) {
+		$("#msgErrorEditarLastPassword1").fadeIn("slow");
+		    		todoCorrecto=false;
+
+	}else{
+		$("#msgErrorEditarLastPassword1").fadeOut("slow");
+	}
+	
+	
+	/*Contraseña esta bien escrita*/
+	if(!exprContraseña.test(newPassword)|| newPassword == null || newPassword.length == 0 ) {
+		$("#msgErrorEditarNewPassword1").fadeIn("slow");
+		    		todoCorrecto=false;
+		if(newPassword!=(newVerifPassword)){
+			$("#msgErrorEditarNewVerifPassword").fadeIn("slow");
+			todoCorrecto=false;
+		}else{
+			$("#msgErrorEditarNewVerifPassword").fadeOut("slow");
+		}
+
+	}else{
+		$("#msgErrorEditarNewPassword1").fadeOut("slow");
+		if(newPassword!=(newVerifPassword)){
+			$("#msgErrorEditarNewVerifPassword").fadeIn("slow");
+			todoCorrecto=false;
+		}else{
+			$("#msgErrorEditarNewVerifPassword").fadeOut("slow");
+		}
+	}
+	
+	/*Algun campo incorrecto*/
+	if(todoCorrecto==false){
+		alert("Existen fallos en algunos campos");
+		return false;
+	}
+
+	/*todo correcto*/
+	document.formEditarUsuario.submit();
+	alert("Inicio de Sesion Satisfactorio")
+	return todoCorrecto;
+	
+})
+
+
+
 });
