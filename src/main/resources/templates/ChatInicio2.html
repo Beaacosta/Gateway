@@ -65,34 +65,21 @@
 				</form>
 
 				<br></br>
-				<div>
+				<div th:if="${!mensUsuario.isEmpty()}" th:each="mens: ${mensUsuario}">
 				<ul class="nav nav-pills nav-stacked">
-					<form th:action="@{/wallapoptiw/Chat2}" method="get" th:each="mens: ${mensUsuario}">
+					<form th:action="@{/wallapoptiw/ChatReceptor}" method="get">
 						<li role="presentation"><button type="hidden" class="btn btn-default" name="receptor" th:value="${mens.receptor}" th:text="${mens.receptor}"></button></li>
 					</form>
 				</ul>
 				</div>
 			</div>
 			<div class="col-xs-9">
-				<h3>Mensajes Enviados</h3>
+				<h3>Mensajes</h3>
 				<hr></hr>
-				<row>
-				<ul class="nav nav-pills nav-stacked">
-				<form th:action="@{/wallapoptiw/Chat3}">
-					<li role="presentation"><button type="hidden" class="btn btn-default">Recibidos</button></li>
-				</form>
-				</ul>
-				</row>
 				<!-- Caja del mensaje -->
 				<row>
-				<div class="contenidoChat" th:if="${mensUsuario.isEmpty()}">
+				<div class="contenidoChat">
 					<h4>Escoja un contacto para mostrar sus mensajes en el lateral izquierdo de la pagina</h4>
-				</div>
-				<div class="contenidoChat" th:if="${!mensUsuario.isEmpty()}" th:each="mens: ${mensUsuario}">
-					<h4 th:text="${mens.emisor}"></h4>
-					<div class="mensaje">
-						<p th:text="${mens.mensaje}"></p>
-					</div>
 				</div>
 				</row>
 			</div>
@@ -108,5 +95,3 @@
 	</footer>
     </body>
 </html>
-
-

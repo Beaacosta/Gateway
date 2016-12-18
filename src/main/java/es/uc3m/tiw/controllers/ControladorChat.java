@@ -34,6 +34,14 @@ public class ControladorChat {
 	}
 	
 	//Obtener los mensajes en los que el usuario en sesion es el emisor
+	@RequestMapping(value="wallapoptiw/Chat3", method = RequestMethod.GET)
+	public String devolverChat3(Model model, @ModelAttribute Usuario usuario){
+		List<Chat> receptores = restTemplate.postForObject("http://localhost:8030/listar_emisores", usuario, List.class);
+		model.addAttribute("mensUsuario", receptores);
+		return "ChatInicio2"; 
+	}
+	
+	//Obtener los mensajes en los que el usuario en sesion es el emisor
 	@RequestMapping(value="wallapoptiw/Chat2", method = RequestMethod.GET)
 	public String devolverChat2(Model model, @ModelAttribute Usuario usuario, @RequestParam("receptor") int receptor){
 		List<Chat> receptores = restTemplate.postForObject("http://localhost:8030/listar_receptores", usuario, List.class);
@@ -59,15 +67,24 @@ public class ControladorChat {
 	
 	//Obtener los mensajes en los que el usuario en sesion es el receptor
 	@RequestMapping(value="wallapoptiw/ChatReceptor", method = RequestMethod.GET)
-	public String devolverChatReceptor(Model model, @ModelAttribute Usuario usuario, @RequestParam("receptor") int id){
-		Usuario receptor = usuario;
-		Usuario emisor = restTemplate.postForObject("http://localhost:8010/buscar_id", id, Usuario.class);
+	public String devolverChatReceptor(Model model, @ModelAttribute Usuario usuario, @RequestParam("receptor") int receptor){
+		List<Chat> receptores = restTemplate.postForObject("http://localhost:8030/listar_receptores", usuario, List.class);
+		model.addAttribute("receptores", receptores);
+		Usuario receptor2 = usuario;
+		Usuario emisor2 = new Usuario();
+		emisor2.setApellidos("aaa");
+		emisor2.setNombre("bbb");
+		emisor2.setCiudad("ccc");
+		emisor2.setMail("aa@aa.com");
+		emisor2.setPassword("123");
+		emisor2.setId(receptor);
+		Usuario emisor = restTemplate.postForObject("http://localhost:8010/buscar_id", emisor2, Usuario.class);
 		Conversacion conv = new Conversacion();
-		conv.setEmisor(emisor);
-		conv.setReceptor(receptor);
+		conv.setEmisor(emisor2);
+		conv.setReceptor(receptor2);
 		List<Chat> mensajes= restTemplate.postForObject("http://localhost:8030/buscar_mensaje", conv, List.class);
 		model.addAttribute("mensReceptor", mensajes);
-		return "Chat"; 
+		return "Chat2"; 
 	}
 
 	
