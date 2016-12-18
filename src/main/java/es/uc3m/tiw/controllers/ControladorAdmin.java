@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import es.uc3m.tiw.dominios.Producto;
 import es.uc3m.tiw.dominios.Usuario;
@@ -40,6 +42,20 @@ public class ControladorAdmin {
 		usuario.setPassword("123");
 		usuario.setId(id);
 		Usuario u = restTemplate.postForObject("http://localhost:8010/buscar_id", usuario, Usuario.class);
+		
+		//Eliminamos productos de ese usuario
+		List<Producto> p =null;
+		p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
+		ObjectMapper mapper = new ObjectMapper();
+		List<Producto> productosuser = mapper.convertValue(p, new TypeReference<List<Producto>>() { });
+		int idProducto;
+		for(Producto prod: productosuser){
+			idProducto= prod.getIdProducto();
+			restTemplate.postForObject("http://localhost:8020/eliminar_producto", idProducto, Producto.class);
+			}
+				
+		//Eliminamos al usuario
+		
 		restTemplate.postForObject("http://localhost:8010/eliminar_usuario", u, Usuario.class);
 		return "redirect:/wallapoptiw/PaginaPrincipalAdmin"; 
 	}
