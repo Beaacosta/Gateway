@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -54,6 +53,10 @@
 						</a></li>
 				</ul>
 		</nav>
+		<div style="text-align:center;">
+			<input type="text" id="cuadrobusquedafotos" class="form-control" placeholder="Buscar..."/>
+		</div>
+		<br></br>
 	</header>
 
 	<div class="row">
@@ -72,7 +75,7 @@
 			<th style="text-align:center;">Modificar</th>
 			<th style="text-align:center;">Borrar</th>	
 		</tr>
-		<tr th:each="usu: ${listaUsuarios}">
+		<tr class="cont-fotos" th:each="usu: ${listaUsuarios}">
 			<td th:text="${usu.nombre}"></td> 
 			<td th:text="${usu.apellidos}"></td>
 			<td th:text="${usu.password}"></td>
@@ -84,6 +87,26 @@
 			</form>	
 		</tr>
 	</table>
+	
+	<script>
+		$(function(){
+			$("#cuadrobusquedafotos").keyup(actualizar_busqueda);
+		});
+		
+		function actualizar_busqueda(){
+			var filtro = $("#cuadrobusquedafotos").val().toLowerCase();
+			$(".cont-fotos").show();
+			
+			if(filtro!=''){
+				$(".cont-fotos").each(function(){
+					if($(this).html().toLowerCase().indexOf(filtro) == -1){
+						$(this).hide();
+					}
+				})
+			}
+				
+		}
+	</script>
 	
 	<footer class="container-fluid">
 		<div class="row">
