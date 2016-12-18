@@ -68,7 +68,7 @@
 				<div th:if="${!mensUsuario.isEmpty()}" th:each="mens: ${mensUsuario}">
 				<ul class="nav nav-pills nav-stacked">
 					<form th:action="@{/wallapoptiw/ChatReceptor}" method="get">
-						<li role="presentation"><button type="hidden" class="btn btn-default" name="receptor" th:value="${mens.receptor}" th:text="${mens.receptor}"></button></li>
+						<li role="presentation"><button type="hidden" class="btn btn-default" name="receptor" th:value="${mens.emisor}"><p th:text="${mens.receptor}"></p></button></li>
 					</form>
 				</ul>
 				</div>
