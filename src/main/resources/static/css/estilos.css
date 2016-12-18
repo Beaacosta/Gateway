@@ -19,9 +19,9 @@ body{
 	margin:0 0 100px;
 	margin-bottom: 100px;
 	padding-bottom: 100px;
-	
-	
 }
+
+
 
 footer{
 	text-align:center;
@@ -49,6 +49,8 @@ footer{
 	padding: 2%;
 	margin: auto;
 	margin-top: 10%;
+	margin-left: 4.5%;
+	float:left;
 }
 
 #black{
@@ -162,6 +164,21 @@ img{
 	margin:5% 1% 2% 20%;
 	background-color:#AED6F1;
 	float:left;
+}
+
+.fondo{
+background: url("/images/fondo.jpg") no-repeat fixed center;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+
+width: 100%;
+height: 100%;
+     
+ z-index: 2;
+ 
+ 
 }
 
 
