@@ -10,16 +10,17 @@ $(document).ready(function(){
 
 
 
-$("#bMiPerfilEditar").click(function(){
+$("#bMiPerfilEditarAdmin").click(function(){
 	
 	var todoCorrecto=true;
 	
 	/*variables*/
 
-	var nombreUsuario = $("#NombreUsuario").val();
-	var apellidosUsuario = $("#ApellidosUsuario").val();
-	var ciudadUsuario = $("#CiudadUsuario").val();
-	var emailUsuario = $("#EmailUsuario").val();
+	var nombreUsuario = $("#Nombre").val();
+	var apellidosUsuario = $("#Apellidos").val();
+	var ciudadUsuario = $("#Ciudad").val();
+	var emailUsuario = $("#Mail").val();
+	var passUsuario = $("#Password").val();
 
 	/*Comprobar que el valor de email sea correcto, expresion regular + campos en blanco*/
 	if(!exprEmail.test(emailUsuario)|| emailUsuario == null || emailUsuario.length == 0 ) {
@@ -57,66 +58,16 @@ $("#bMiPerfilEditar").click(function(){
 		$("#msgErrorEditarUsuarioCiudad").fadeOut("slow");
 	}
 	
-	/*Algun campo incorrecto*/
-	if(todoCorrecto==false){
-		return false;
-	}
-
-	/*todo correcto*/
-	document.formEditarUsuario.submit();
-	return todoCorrecto;
 	
-})
-
-
-
-
-
-
-$("#bEditarPassword").click(function(){
-	
-var todoCorrecto=true;
-
-
-
-	
-	/*variables*/
-
-	var lastPassword = $("#ContrasenyaActual").val();
-	var newPassword = $("#NuevaContrasenya").val();
-	var newVerifPassword = $("#VerificarContrasenya").val();
-	
-	
-	/*Contraseña antigua bien escrita*/
-	if(!exprContraseña.test(lastPassword)|| lastPassword == null || lastPassword.length == 0 ) {
-		$("#msgErrorEditarLastPassword1").fadeIn("slow");
+	/*Contraseña bien escrita*/
+	if(!exprContraseña.test(passUsuario)|| passUsuario == null || passUsuario.length == 0 ) {
+		$("#msgErrorEditarPassword1").fadeIn("slow");
 		    		todoCorrecto=false;
 
 	}else{
-		$("#msgErrorEditarLastPassword1").fadeOut("slow");
+		$("#msgErrorEditarPassword1").fadeOut("slow");
 	}
 	
-	
-	/*Contraseña esta bien escrita*/
-	if(!exprContraseña.test(newPassword)|| newPassword == null || newPassword.length == 0 ) {
-		$("#msgErrorEditarNewPassword1").fadeIn("slow");
-		    		todoCorrecto=false;
-		if(newPassword!=(newVerifPassword)){
-			$("#msgErrorEditarNewVerifPassword").fadeIn("slow");
-			todoCorrecto=false;
-		}else{
-			$("#msgErrorEditarNewVerifPassword").fadeOut("slow");
-		}
-
-	}else{
-		$("#msgErrorEditarNewPassword1").fadeOut("slow");
-		if(newPassword!=(newVerifPassword)){
-			$("#msgErrorEditarNewVerifPassword").fadeIn("slow");
-			todoCorrecto=false;
-		}else{
-			$("#msgErrorEditarNewVerifPassword").fadeOut("slow");
-		}
-	}
 	
 	/*Algun campo incorrecto*/
 	if(todoCorrecto==false){
@@ -124,11 +75,10 @@ var todoCorrecto=true;
 	}
 
 	/*todo correcto*/
-	document.formEditarUsuario.submit();
+	document.formEditarUsuarioAdmin.submit();
 	return todoCorrecto;
 	
 })
-
 
 
 });

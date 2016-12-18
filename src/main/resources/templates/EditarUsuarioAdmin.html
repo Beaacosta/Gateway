@@ -25,6 +25,13 @@
 	<link rel="stylesheet" href="/css/bootstrap.min.css.map" />	
 	<link rel="stylesheet" href="/css/bootstrap-theme.css" />		
 
+<link rel="stylesheet" href="/css/errorStyle.css" />
+
+
+
+<script th:href="@{/js/editarUsuarioAdminValidation.js}"
+	src="/js/editarUsuarioAdminValidation.js"></script>
+<script th:href="@{/js/jquery-1.11.3.js}" src="/js/jquery-1.11.3.js"></script>
 
     </head>
     <body>
@@ -43,36 +50,54 @@
 	</header>
 
 	<div style="margin:60px 100px;">
-		<form th:action="@{/wallapoptiw/UsuarioEditarAdmin}" th:object="${usuario}" method="post">
+		<form th:action="@{/wallapoptiw/UsuarioEditarAdmin}" th:object="${usuario}" method="post"
+		id="formEditarUsuarioAdmin">
 				<div class="form-group">
 					<label for="Nombre">Nombre del usuario</label> <input
 						type="Nombre" class="form-control"
 						th:value="*{nombre}" name="Nombre"
 						id="Nombre" placeholder="Nombre"></input>
+						
+						<div id="msgErrorEditarUsuarioNombre" class="errores">Nombre
+							incorrecto</div>
 				</div>
 				<div class="form-group">
 					<label for="Apellidos">Apellidos</label> <input
 						type="Apellidos" class="form-control"
 						th:value="*{apellidos}" name="Apellidos"
 						id="Apellidos" placeholder="Apellidos"></input>
+						
+						<div id="msgErrorEditarUsuarioApellidos" class="errores">Apellidos
+							incorrectos</div>
 				</div>
 				<div class="form-group">
 					<label for="Mail">Email</label> <input type="Mail"
 						class="form-control" th:value="*{mail}" name="Mail"
 						id="Mail" placeholder="Mail"></input>
+						
+						<div id="msgErrorEditarUsuarioMail" class="errores">Mail
+							incorrectos</div>
 				</div>
 				<div class="form-group">
 					<label for="Password">Contraseña</label> <input type="text"
 						class="form-control" th:value="*{password}" name="Password"
 						id="Password" placeholder="Password"></input>
+						
+						<div id="msgErrorEditarPassword1" class="errores">Contraseña
+							incorrecta</div>
+						
 				</div>
 				<div class="form-group">
 					<label for="Ciudad">Ciudad</label> <input type="Ciudad"
 						class="form-control" th:value="*{ciudad}" name="Ciudad"
 						id="Ciudad" placeholder="Ciudad"></input>
+						
+						<div id="msgErrorEditarUsuarioCiudad" class="errores">Ciudad
+							incorrecta</div>
 				</div>
 						
-		<button type="submit" name="accion" class="btn btn-default">Guardar cambios</button>
+		<button type="submit" name="accion" class="btn btn-default"
+		id="bMiPerfilEditarAdmin">Guardar cambios</button>
 		</form>
 		</div>
 	
