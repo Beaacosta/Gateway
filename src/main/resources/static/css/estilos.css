@@ -5,15 +5,33 @@ header{
 	border: 1px solid grey;
 }
 
+html{
+	position: relative;
+	min-height: 100%;
+		padding-bottom: 100px;
+	
+	
+	
+}
+
 body{
 	background-color:#DEF8FC !important;
+	margin:0 0 100px;
+	margin-bottom: 100px;
+	padding-bottom: 100px;
+	
+	
 }
 
 footer{
 	text-align:center;
 	background-color: #3498DB;
-	margin-top: 3%;
+	margin-top: -100px;
 	padding: 3%;
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+	
 }
 
 #buscador{
