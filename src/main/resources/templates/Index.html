@@ -26,8 +26,6 @@
 <link rel="stylesheet" href="/css/estilos.css" />
 <link rel="stylesheet" href="/css/errorStyle.css" />
 
-
-
 <link rel="stylesheet" href="/css/bootstrap-theme.css" />
 <link rel="stylesheet" href="/css/bootstrap-theme.css.map" />
 <link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
@@ -62,121 +60,126 @@
 			</h1>
 		</div>
 	</header>
+	<div class="fondo">
+		<div class="container">
+			<article class="registro">
 
-	<div class="container">
-		<article class="registro">
-
-			<form th:action="@{/wallapoptiw/}" method="post"
-				id="formInicioSesion">
-				<p>
-					<b> Email </b>
-				</p>
-				<div class="input-inicio">
-					<input type="email" name="email" id="email" class="form-control"
-						placeholder="Email"></input>
-					<div id="msgErrorLoginMail" class="errores">Email Incorrecto</div>
-
-				</div>
-				<br>
-				<div class="input-sesion">
+				<form th:action="@{/wallapoptiw/}" method="post"
+					id="formInicioSesion">
 					<p>
-						<b> Contrasena </b>
+						<b> Email </b>
 					</p>
-					<input type="password" name="password" id="password"
-						class="form-control" placeholder="Contrasena"></input>
-						
-						<div id="msgErrorLoginPass1" class="errores">Contraseña
-						incorrecta</div>
-					<div id="msgErrorLoginPass2" class="errores">Introduzca la
-						contraseña</div>
-				</div>
-				</br>
-				<button type="submit" name="accion" value="IniciarSesion"
-					class="btn btn-default" id="btnIniciarSesion" style="margin-left: 60px; margin-top:2%;
-					">Iniciar sesion</button>
-
-			</form>
-			
-			<button type="button" class="btn btn-default" data-toggle="modal"
-				data-target="#ventanaRegistro" style="margin-left: 65px; margin-top:2%;">Registrarse</button>
-				
-					
-			<div class="modal fade" id="ventanaRegistro">
-				<div class="modal-dialog">
-					<div class="modal-content">
-
-						<form th:action="@{/wallapoptiw/registrar}" method="post" id="formRegistro">
-
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title">Registro de usuarios</h4>
-							</div>
-							<div class="modal-body">
-								<div class="form-group">
-									<label for="InputEmail">Email</label> <input type="email"
-										name="InputEmail" class="form-control" id="InputEmail"
-										placeholder="Email"></input>
-									<div id="msgErrorRegistroMail" class="errores">Email
-										incorrecto</div>
-								</div>
-								<div class="form-group">
-									<label for="Contrasenya">Contrasenya -Minimo cinco caracteres-</label> <input
-										type="password" class="form-control" id="Contrasenya"
-										name="Contrasenya" placeholder="Contrasenya"></input>
-									<div id="msgErrorRegistroPassword1" class="errores">Contraseña
-										incorrecta</div>
-									<div id="msgErrorRegistroPassword2" class="errores">Introduzca
-										la contraseña</div>
-								</div>
-								<div class="form-group">
-									<label for="VerificacionContrasenya">Verificacion
-										Contrasenya</label> <input type="password" class="form-control"
-										id="VerificacionContrasenya" name="VerificacionContrasenya"
-										placeholder="Contrasenya"></input>
-									<div id="msgErrorRegistroVerif1" class="errores">Verificacion
-										incorrecta</div>
-									<div id="msgErrorRegistroVerif2" class="errores">Las
-										contraseñas no coinciden</div>
-								</div>
-								<div class="form-group">
-									<label for="Nombre">Nombre -Primera letra con mayuscula-</label> <input type="text"
-										name="Nombre" class="form-control" id="Nombre"
-										placeholder="Nombre"></input>
-									<div id="msgErrorRegistroNombre" class="errores">Nombre
-										incorrecto</div>
-
-								</div>
-								<div class="form-group">
-									<label for="Apellidos">Apellidos -Primera letra con mayuscula-</label> <input
-										type="apellidos" class="form-control" id="Apellidos"
-										name="Apellidos" placeholder="Apellidos"></input>
-									<div id="msgErrorRegistroApellidos" class="errores">Apellidos Incorrectos</div>
-
-								</div>
-								<div class="form-group">
-									<label for="Ciudad">Ciudad -Primera letra con mayuscula-</label> <input type="ciudad"
-										name="Ciudad" class="form-control" id="Ciudad"
-										placeholder="Ciudad"></input>
-									<div id="msgErrorRegistroCiudad" class="errores"> Ciudad incorrecta</div>
-										
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal" aria-hidden="true">Cerrar</button>
-								<button type="submit" name="accion" value="registro"
-									id="bRegistro" class="btn btn-default">Guardar cambios</button>
-							</div>
-
-						</form>
+					<div class="input-inicio">
+						<input type="email" name="email" id="email" class="form-control"
+							placeholder="Email"></input>
+						<div id="msgErrorLoginMail" class="errores">Email Incorrecto</div>
 
 					</div>
-				</div>
-			</div>
-		</article>
-	</div>
+					<br>
+					<div class="input-sesion">
+						<p>
+							<b> Contrasena </b>
+						</p>
+						<input type="password" name="password" id="password"
+							class="form-control" placeholder="Contrasena"></input>
 
+						<div id="msgErrorLoginPass1" class="errores">Contraseña
+							incorrecta</div>
+						<div id="msgErrorLoginPass2" class="errores">Introduzca la
+							contraseña</div>
+					</div>
+					</br>
+					<button type="submit" name="accion" value="IniciarSesion"
+						class="btn btn-default" id="btnIniciarSesion"
+						style="margin-left: 60px; margin-top: 2%;">Iniciar sesion</button>
+
+				</form>
+
+				<button type="button" class="btn btn-default" data-toggle="modal"
+					data-target="#ventanaRegistro"
+					style="margin-left: 65px; margin-top: 2%;">Registrarse</button>
+
+
+				<div class="modal fade" id="ventanaRegistro">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+							<form th:action="@{/wallapoptiw/registrar}" method="post"
+								id="formRegistro">
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+									<h4 class="modal-title">Registro de usuarios</h4>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label for="InputEmail">Email</label> <input type="email"
+											name="InputEmail" class="form-control" id="InputEmail"
+											placeholder="Email"></input>
+										<div id="msgErrorRegistroMail" class="errores">Email
+											incorrecto</div>
+									</div>
+									<div class="form-group">
+										<label for="Contrasenya">Contrasenya -Minimo cinco
+											caracteres-</label> <input type="password" class="form-control"
+											id="Contrasenya" name="Contrasenya" placeholder="Contrasenya"></input>
+										<div id="msgErrorRegistroPassword1" class="errores">Contraseña
+											incorrecta</div>
+										<div id="msgErrorRegistroPassword2" class="errores">Introduzca
+											la contraseña</div>
+									</div>
+									<div class="form-group">
+										<label for="VerificacionContrasenya">Verificacion
+											Contrasenya</label> <input type="password" class="form-control"
+											id="VerificacionContrasenya" name="VerificacionContrasenya"
+											placeholder="Contrasenya"></input>
+										<div id="msgErrorRegistroVerif1" class="errores">Verificacion
+											incorrecta</div>
+										<div id="msgErrorRegistroVerif2" class="errores">Las
+											contraseñas no coinciden</div>
+									</div>
+									<div class="form-group">
+										<label for="Nombre">Nombre -Primera letra con
+											mayuscula-</label> <input type="text" name="Nombre"
+											class="form-control" id="Nombre" placeholder="Nombre"></input>
+										<div id="msgErrorRegistroNombre" class="errores">Nombre
+											incorrecto</div>
+
+									</div>
+									<div class="form-group">
+										<label for="Apellidos">Apellidos -Primera letra con
+											mayuscula-</label> <input type="apellidos" class="form-control"
+											id="Apellidos" name="Apellidos" placeholder="Apellidos"></input>
+										<div id="msgErrorRegistroApellidos" class="errores">Apellidos
+											Incorrectos</div>
+
+									</div>
+									<div class="form-group">
+										<label for="Ciudad">Ciudad -Primera letra con
+											mayuscula-</label> <input type="ciudad" name="Ciudad"
+											class="form-control" id="Ciudad" placeholder="Ciudad"></input>
+										<div id="msgErrorRegistroCiudad" class="errores">Ciudad
+											incorrecta</div>
+
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal" aria-hidden="true">Cerrar</button>
+									<button type="submit" name="accion" value="registro"
+										id="bRegistro" class="btn btn-default">Guardar
+										cambios</button>
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+	</div>
 	<footer class="container-fluid">
 		<div class="row">
 			<p>Wallapop, compra y vende productos</p>
