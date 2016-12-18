@@ -11,6 +11,10 @@
 	<script th:href="@{/js/bootstrap.min.js}" src="/js/bootstrap.min.js"></script>
 	<script th:href="@{/js/npm.js}" src="/js/npm.js"></script>
 	
+	<script th:href="@{/js/editarUsuarioValidation.js}"
+	src="/js/editarUsuarioValidation.js"></script>
+<script th:href="@{/js/jquery-1.11.3.js}" src="/js/jquery-1.11.3.js"></script>
+	
 	<link rel="stylesheet" href="/css/estilos.css" />
 	
 	<link rel="stylesheet" href="/css/bootstrap-theme.css" />
@@ -22,6 +26,9 @@
 	<link rel="stylesheet" href="/css/bootstrap.min.css" />	
 	<link rel="stylesheet" href="/css/bootstrap.min.css.map" />	
 	<link rel="stylesheet" href="/css/bootstrap-theme.css" />		
+	
+	
+	<link rel="stylesheet" href="/css/errorStyle.css" />
 	
 
     </head>
@@ -90,21 +97,31 @@
 				<h3>Contrase�a</h3>
 				<h4>Cambia tu contraseña actual</h4>
 				<hr></hr>
-				<form th:action="@{/wallapoptiw/MiPerfilContrasenya2}"  method="post">
+				<form th:action="@{/wallapoptiw/MiPerfilContrasenya2}"  method="post" id="formEditarPassword">
 				
 				<div class="input-group input_espaciado">
 					<span class="input-group-addon" id="basic-addon1">Contraseña actual</span>
 					<input type="password" class="form-control" name="ContrasenyaActual" id="ContrasenyaActual" placeholder="ContrasenyaActual" aria-describedly="basic-addon1"></input>
+				<div id="msgErrorEditarLastPassword1" class="errores">Contraseña
+										incorrecta</div>
+									<div id="msgErrorEditarLastPassword2" class="errores">Introduzca
+										la contraseña</div>
 				</div>
 				<div class="input-group input_espaciado">
 					<span class="input-group-addon" id="basic-addon1">Nueva contraseña</span>
 					<input type="password" class="form-control" name="NuevaContrasenya" id="NuevaContrasenya" placeholder="NuevaContrasenya" aria-describedly="basic-addon1"></input>
+				<div id="msgErrorEditarNewPassword1" class="errores">Contraseña
+										incorrecta</div>
+									<div id="msgErrorEditarNewPassword2" class="errores">Introduzca
+										la contraseña</div>
 				</div>
 				<div class="input-group input_espaciado">
 					<span class="input-group-addon" id="basic-addon1">Verificar nueva contraseña</span>
 					<input type="password" class="form-control" name="VerificarContrasenya" id="VerificarContrasenya" placeholder="VerificarContrasenya" aria-describedly="basic-addon1"></input>
+				<div id="msgErrorEditarNewVerifPassword" class="errores">Las
+										contraseñas no coinciden</div>
 				</div>
-				<button type="hidden" name="accion" value="Cambiar" class="btn btn-default">Guardar cambios</button>	
+				<button type="submit" name="accion" value="Cambiar" class="btn btn-default" id="bEditarPassword">Guardar cambios</button>	
 				</form>	
 			</div>
 		</div>
