@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +52,6 @@ public class ControladorProducto {
 		model.addAttribute("productos_usuario", "");
 		List<Producto> p = null;
 		p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
-		int bea = usuario.getId();
 		model.addAttribute("productos_usuario", p);
 		return "MisProductos"; 
 	}
@@ -63,7 +61,6 @@ public class ControladorProducto {
 		model.addAttribute("productos_usuario", "");
 		List<Producto> p = null;
 		p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
-		int bea = usuario.getId();
 		model.addAttribute("productos_usuario", p);
 		return "MisProductos"; 
 	}
@@ -116,6 +113,7 @@ public class ControladorProducto {
 		restTemplate.postForObject("http://localhost:8020/eliminar_producto", idProducto, Producto.class);
 		return "redirect:/wallapoptiw/MisProductos";
 	}
+	
 	
 	
 	//Coger el Producto de la vista

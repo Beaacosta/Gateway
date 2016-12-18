@@ -1,7 +1,6 @@
 package es.uc3m.tiw.controllers;
 
 
-import static org.assertj.core.api.Assertions.useDefaultDateFormatsOnly;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
-import antlr.collections.List;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.List;
+import es.uc3m.tiw.dominios.Producto;
 import es.uc3m.tiw.dominios.Usuario;
 
-@SessionAttributes({"usuario", "error"})
+@SessionAttributes({"usuario", "producto", "error", "productos_usuario", "lista_productos"})
 @Controller
 public class ControladorUsuario {
 
@@ -163,9 +166,18 @@ public class ControladorUsuario {
 	
 	@RequestMapping(value="wallapoptiw/EliminarUsuario", method = RequestMethod.POST)
 	public String EliminarUsuario(Model model, @ModelAttribute Usuario usuario){
+		//Eliminamos productos de ese usuario
+		List<Producto> p =null;
+		p = restTemplate.postForObject("http://localhost:8020/productos_usuario", usuario, List.class);
+		ObjectMapper mapper = new ObjectMapper();
+		List<Producto> productosuser = mapper.convertValue(p, new TypeReference<List<Producto>>() { });
+		int idProducto;
+		for(Producto prod: productosuser){
+			idProducto= prod.getIdProducto();
+			restTemplate.postForObject("http://localhost:8020/eliminar_producto", idProducto, Producto.class);
+		}
+		
 		restTemplate.postForObject("http://localhost:8010/eliminar_usuario", usuario, Usuario.class);
-		model.addAttribute("usuario",null);
-		model.addAttribute("error", "");
 		return "Index"; 
 	}
 
