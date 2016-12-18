@@ -8,7 +8,7 @@ header{
 html{
 	position: relative;
 	min-height: 100%;
-		padding-bottom: 100px;
+	padding-bottom: 100px;
 	
 	
 	
@@ -137,6 +137,7 @@ img{
 	border-radius:4px;
   -moz-border-radius:4px;
   -webkit-border-radius:4px;
+  
 }
 
 .contenidoChat{
