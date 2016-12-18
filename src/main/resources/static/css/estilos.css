@@ -139,6 +139,28 @@ img{
   -webkit-border-radius:4px;
 }
 
+.contenidoChat{
+	width: 99%;
+	padding: 20px 30px;
+	background-color:#AED6F1;
+	border: 2px  solid #337ab7;
+	border-radius:4px;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  margin: 50px auto;
+}
 
+
+#article_grande{
+	border-radius: 20px 20px 20px 20px;
+	-moz-border-radius: 20px 20px 20px 20px;
+	-webkit-border-radius: 20px 20px 20px 20px;
+	width: 60%;
+	border: 2px solid #337ab7;
+	text-align:center;
+	margin:5% 1% 2% 20%;
+	background-color:#AED6F1;
+	float:left;
+}
 
 

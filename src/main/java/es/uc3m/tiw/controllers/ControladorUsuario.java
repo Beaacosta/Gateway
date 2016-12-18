@@ -58,6 +58,10 @@ public class ControladorUsuario {
 			}
 			Usuario u = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
 			//login satisfactorio
+			if(u==null){
+				model.addAttribute("error", "Los datos introducidos no existen o no son correctos");
+				return "Index";
+			}
 			if(u.getId()!=usuario.getId()){
 				if(u.getPassword().equals(password)){
 					model.addAttribute("usuario",u);
