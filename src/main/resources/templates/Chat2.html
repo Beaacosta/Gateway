@@ -68,7 +68,7 @@
 				<div>
 				<ul class="nav nav-pills nav-stacked">
 					<form th:action="@{/wallapoptiw/ChatReceptor}" method="get" th:each="mens: ${mensUsuario}">
-						<li role="presentation"><button type="hidden" class="btn btn-default" name="receptor" th:value="${mens.receptor}" th:text="${mens.receptor}"></button></li>
+						<li role="presentation"><button type="hidden" class="btn btn-default" name="emisor" th:value="${mens.emisor}"><p th:text="${mens.receptor}"></p></button></li>
 					</form>
 				</ul>
 				</div>
@@ -85,11 +85,11 @@
 				</row>
 				<!-- Caja del mensaje -->
 				<row>
-				<div class="contenidoChat" th:if="${mensUsuario.isEmpty()}">
+				<div class="contenidoChat" th:if="${mensUsuario.isEmpty()}" th:object="${receptor}">
 					<h4>Escoja un contacto para mostrar sus mensajes en el lateral izquierdo de la pagina</h4>
 				</div>
 				<div class="contenidoChat" th:if="${!mensUsuario.isEmpty()}" th:each="mens: ${mensUsuario}">
-					<h4 th:text="${mens.receptor}"></h4>
+					<h4 th:text="*{receptor.mail}"></h4>
 					<div class="mensaje">
 						<p th:text="${mens.mensaje}"></p>
 					</div>
