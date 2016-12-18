@@ -12,6 +12,9 @@
 	<script th:href="@{/js/bootstrap.js}" src="/js/jbootstrap.js"></script>
 	<script th:href="@{/js/bootstrap.min.js}" src="/js/bootstrap.min.js"></script>
 	<script th:href="@{/js/npm.js}" src="/js/npm.js"></script>
+	<script th:href="@{/js/editarProductoValidation.js}"
+	src="/js/editarProductoValidation.js"></script>
+<script th:href="@{/js/jquery-1.11.3.js}" src="/js/jquery-1.11.3.js"></script>
 	
 	<link rel="stylesheet" href="/css/estilos.css" />
 	
@@ -23,7 +26,10 @@
 	<link rel="stylesheet" href="/css/bootstrap.css.map" />	
 	<link rel="stylesheet" href="/css/bootstrap.min.css" />	
 	<link rel="stylesheet" href="/css/bootstrap.min.css.map" />	
-	<link rel="stylesheet" href="/css/bootstrap-theme.css" />		
+	<link rel="stylesheet" href="/css/bootstrap-theme.css" />	
+	
+	<link rel="stylesheet" href="/css/errorStyle.css" />
+		
 
 
     </head>
@@ -59,12 +65,16 @@
 	</header>
 
 	<div style="margin:60px 100px;">
-		<form th:action="@{/wallapoptiw/MiProductoEditar2}" th:object="${producto}" method="post">
+	
+		<form th:action="@{/wallapoptiw/MiProductoEditar2}" th:object="${producto}" method="post"
+		id="formEditarProducto">
 				<div class="form-group">
 					<label for="NombreProducto">Nombre del producto</label> <input
 						type="NombreProducto" class="form-control"
 						th:value="*{titulo}" name="NombreProducto"
 						id="NombreProducto" placeholder="NombreProducto"></input>
+						<div id="msgErrorEditarProductoNombre" class="errores">Nombre
+												incorrecto</div>
 				</div>
 				<div class="form-group">
 					<label for="Categoria">Categoría</label> <select name="Categoria"
@@ -84,12 +94,19 @@
 					<label for="Descripcion">Descripcion</label> <input
 						type="Descripcion" class="form-control"
 						th:value="*{descripcion}" name="Descripcion"
-						id="Descripcion" placeholder="Descripcion"></input>
+						id="DescripcionProducto" placeholder="Descripcion"></input>
+						<div id="msgErrorEditarProductoDescripcion" class="errores">La
+												descripcion no puede estar en blanco</div>
 				</div>
 				<div class="form-group">
 					<label for="Precio">Precio</label> <input type="Precio"
 						class="form-control" th:value="*{precio}" name="Precio"
-						id="Precio" placeholder="Precio"></input>
+						id="PrecioProducto" placeholder="Precio"></input>
+						<div id="msgErrorEditarProductoPrecio1" class="errores">Precio
+												incorrecto. Introduzca un numero positivo con la parte decimal
+												separada por un punto</div>
+											<div id="msgErrorEditarProductoPrecio2" class="errores">Precio
+												incorrecto. Maximo dos decimales separados por punto</div>
 				</div>
 				<div class="form-group">
 					<label for="Estado">Estado</label> <select name="Estado"
@@ -100,7 +117,8 @@
 					</select>
 				</div>
 						
-		<button type="submit" name="accion" class="btn btn-default">Guardar cambios</button>
+		<button type="submit" name="accion" class="btn btn-default"
+		id="bEditarProductos">Guardar cambios</button>
 		</form>
 		</div>
 	
