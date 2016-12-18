@@ -50,19 +50,16 @@ public class ControladorUsuario {
 		else{
 			usuario.setMail(mail);	
 			usuario.setPassword(password);
+			if((mail.equals("admin@admin.com"))&&(password.equals("admin"))){
+				return "redirect:/wallapoptiw/PaginaPrincipalAdmin";					
+			}
 			Usuario u = restTemplate.postForObject("http://localhost:8010/buscar_mail", usuario, Usuario.class);
 			//login satisfactorio
 			if(u.getId()!=usuario.getId()){
 				if(u.getPassword().equals(password)){
-					if(u.getMail().equals("admin@admin.com")){
-						model.addAttribute("usuario",u);
-						return "redirect:wallapoptiw/PaginaPrincipal_admin";	
-					}
-					else{
-						model.addAttribute("usuario",u);
-						model.addAttribute("error", "Has iniciado sesión correctamente");
-						return "redirect:/wallapoptiw/PPrincipal";						
-					}
+					model.addAttribute("usuario",u);
+					model.addAttribute("error", "Has iniciado sesión correctamente");
+					return "redirect:/wallapoptiw/PPrincipal";						
 				}
 				else{
 					model.addAttribute("error", "Los datos introducidos no existen o no son correctos");

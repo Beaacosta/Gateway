@@ -29,25 +29,12 @@
 
 </head>
 <body>
-<!--  
-<%  
-					HttpSession sesion = (HttpSession) request.getSession(false);
-					String mensaje = (String)sesion.getAttribute("mensajeRegistro");
-					if(mensaje!=null){
-				%>
-					<h3 style="background-color:red; width:95%; margin:10px 20px;" class="alert">${mensajeRegistro}</h3>
-				<%} 
-					sesion.setAttribute("mensajeRegistro", null);
-				%>
--->
+
+
 	<header class="container-fluid">
 		<div class="col-xs-3 col-sm-3">
 			<form action="pag_principal" method="post">
-				<a href="PaginaPrincipal.html"><img src="/images/logo.png"
-					width="100" alt=logoWallapop"></a> <input type="hidden"
-					name="Logo" value="Principal">
-
-
+				<a th:href="@{/wallapoptiw/PaginaPrincipalAdmin}"><img src="/images/logo.png" width="100"></img></a>
 			</form>
 		</div>
 		<div class="col-xs-9 col-sm-5">
@@ -56,29 +43,19 @@
 			</h1>
 		</div>
 		<nav class="col-xs-12 col-sm-4">
-			<form action="pag_principal_admin" method="post">
 				<ul id="menu" class="nav navbar-nav navbar-right">
-					<li><a href="PaginaPrincipal_admin.html"><img src="/images/usuario.png" width="30"></a></li>
-					<li><a href="Producto_admin.html"><img src="/images/productos.png" width="30" height="30"></a></li>
-					<li><a href="Chat.html"><img src="/images/chats.png" width="30"></a></li>
-					<li><a href="Index.html"><img src="/images/cerrar.png" width="30"></a></li>
-
+					<li><a th:href="@{/wallapoptiw/PPaginaPrincipalAdmin}">
+							<img src="/images/usuario.png" width="30"></img>
+						</a></li>
+					<li><a th:href="@{/wallapoptiw/ProductoAdmin}">
+							<img src="/images/productos.png" width="30" height="30"></img>
+						</a></li>
+					<li><a th:href="@{/wallapoptiw/CerrarSesion}">
+							<img src="/images/cerrar.png" width="30"></img>
+						</a></li>
 				</ul>
-			</form>
 		</nav>
 	</header>
-
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="input-group" id="buscador">
-				<input type="text" class="form-control" placeholder="Buscar..."></input>
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">Buscar</button>
-					<button class="btn btn-default" type="button">Busqueda
-						avanzada</button>
-			</div>
-		</div>
-	</div>
 
 	<div class="row">
 		<div class="col-xs-12 text-center">
@@ -88,81 +65,30 @@
 	
 	<table border="1" style="text-align:center; width:95%; margin: 0 20px;">
 		<tr class="text-center">
-			<th style="text-align:center;">Nombre</th>
+			<th style="text-align:center;">Titulo</th>
 			<th style="text-align:center;">Categoría</th>
 			<th style="text-align:center;">Precio</th>
+			<th style="text-align:center;">Estado</th>
+			<th style="text-align:center;">Descripcion</th>			
 			<th style="text-align:center;">Borrar</th>		
 			<th style="text-align:center;">Modificar</th>
 		</tr>
-		<!--  
-		<%  
-					EntityManager em = (EntityManager) sesion.getAttribute("em");
-					UserTransaction ut = (UserTransaction) sesion.getAttribute("ut");
-					
-					ProductoDAOImpl producto_pintar = new ProductoDAOImpl(em,ut);
-					Collection<Producto> coleccion = producto_pintar.listarProductos();
-					
-					for(Producto p: coleccion){
-						sesion.setAttribute("Producto_pintar", p);
-		%>
-		-->
-		<tr>
-			<td>${Producto_pintar.titulo }</td> 
-			<td>${Producto_pintar.categoria }</td>
-			<td>${Producto_pintar.precio }</td>
-			<td><a href="administrador_productos?accion=eliminar&id=${Producto_pintar.id}">Borrar</a></td>
-			<td><button type="button" class="btn btn-default" data-toggle="modal"
-				data-target="#ventanaEditar" style="margin-left:15px;">Editar</button></td>
-			
-			<div class="modal fade" id="ventanaEditar">
-				<div class="modal-dialog">
-					<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Editar producto</h4>
-				</div>
-				<div class="modal-body">
-								<div class="form-group">
-									<label for="titulo">Nombre</label> <input type="titulo"
-										name="titulo" class="form-control" id="titulo" 
-										value="${Producto_pintar.titulo}" placeholder="titulo"></input>
-								</div>
-								<div class="form-group">
-									<label for="Categoria">Categoria</label> <input type="text" name="Categoria" class="form-control" id="Categoria" 
-										value="${Producto_pintar.categoria}" placeholder="Categoria"></input>
-								</div>
-								<div class="form-group">
-									<label for="Descripcion">Descripcion</label> <input
-										type="Descripcion" class="form-control" id="Descripcion"
-										name="Descripcion"
-										value="${Producto_pintar.descripcion}" placeholder="Descripcion"></input>
-								</div>
-								<div class="form-group">
-									<label for="Precio">Precio</label> <input
-										type="Precio" class="form-control" id="Precio"
-										name="Precio"
-										value="${Producto_pintar.precio}" placeholder="Precio">
-								</div>
-								<div class="form-group">
-									<label for="Estado">Estado</label> <input type="Estado"
-										name="Estado" 
-										class="form-control" id="Estado" value="${Producto_pintar.estado}" placeholder="Estado"></input>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal" aria-hidden="true">Cerrar</button>
-								<a href="administrador_productos?accion=editar&id=${Producto_pintar.id}">Editar</a>
-							</div>
+
+		<tr th:each="prod: ${listaProductos}">
+			<td th:text="${prod.titulo}"></td> 
+			<td th:text="${prod.categoria}"></td>
+			<td th:text="${prod.precio}"></td>
+			<td th:text="${prod.estado}"></td>
+			<td th:text="${prod.descripcion}"></td>			
+			<form th:action="@{/wallapoptiw/EliminarProductoAdmin}"  method="get">
+			<td><button type="hidden" class="btn btn-default" name="idProducto" th:value="${prod.idProducto}">Eliminar</button></td>
+			</form>
+			<form th:action="@{/wallapoptiw/EditarProductoAdmin}" method="get">
+			<td><button type="hidden" class="btn btn-default" name="idProducto" th:value="${prod.idProducto}">Editar</button></td>
+			</form>	
 		</tr>
-		<!--  
-		<%
-			} 
-		%>
-		-->
 	</table>
-	</div>
+	
 	<footer class="container-fluid">
 		<div class="row">
 			<p>Wallapop, compra y vende productos</p>
