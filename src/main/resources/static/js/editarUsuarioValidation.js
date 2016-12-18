@@ -122,13 +122,11 @@ var todoCorrecto=true;
 	
 	/*Algun campo incorrecto*/
 	if(todoCorrecto==false){
-		alert("Existen fallos en algunos campos");
 		return false;
 	}
 
 	/*todo correcto*/
 	document.formEditarUsuario.submit();
-	alert("Inicio de Sesion Satisfactorio")
 	return todoCorrecto;
 	
 })

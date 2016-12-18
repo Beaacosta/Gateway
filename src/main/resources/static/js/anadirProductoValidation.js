@@ -56,8 +56,17 @@ $(document).ready(function(){
 
 			if((exprPrecio2.test(precioProducto) || exprPrecio1.test(precioProducto) || exprPrecio0.test(precioProducto))){
 				
+					var posPunto=precioProducto.indexOf(".");
+					var parteDecimal=precioProducto.substr(posPunto,4);
+					var longitudDecimal=parteDecimal.length;
 					
-					$("#msgErrorAnadirProductoPrecio2").fadeOut("slow");			
+					if(longitudDecimal>3){
+						todoCorrecto=false;
+						$("#msgErrorAnadirProductoPrecio2").fadeIn("slow");
+					}else{
+						$("#msgErrorAnadirProductoPrecio2").fadeOut("slow");			
+
+					}				
 			
 			}else{
 				todoCorrecto=false;

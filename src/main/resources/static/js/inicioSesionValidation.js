@@ -71,13 +71,11 @@ marcaran las distintas expresiones reguladas utilizadas
 		
 		/*Algun campo incorrecto*/
 		if(todoCorrecto==false){
-			alert("Existen fallos en algunos campos");
 			return false;
 		}
 
 		/*todo correcto*/
 		document.formInicioSesion.submit();
-		alert("Inicio de Sesion Satisfactorio")
 		return todoCorrecto;
 
 	});

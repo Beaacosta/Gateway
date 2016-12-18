@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 
 	/*Al enviar el formulario se realiza esta funcion*/
-	$("#bEditarProductos").click(function(){
+	$("#bEditarProductosAdmin").click(function(){
 
 		/*valriables gobales en este documento
 		marcaran las distintas expresiones reguladas utilizadas
@@ -50,7 +50,6 @@ $(document).ready(function(){
 			$("#msgErrorEditarProductoDescripcion").fadeOut("slow");
 		}
 
-		
 		/*Precio positivo y como mucho con dos decimales*/
 		if(precioProducto > 0){
 			$("#msgErrorEditarProductoPrecio1").fadeOut("slow");
@@ -89,7 +88,7 @@ $(document).ready(function(){
 		}
 
 		/*todo correcto*/
-		document.formEditarProducto.submit();
+		document.formEditarProductoAdmin.submit();
 		return todoCorrecto;
 
 
